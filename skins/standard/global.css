@@ -604,6 +604,7 @@ div.user_match {
 }
 .field_help_link {
     cursor: help;
+    white-space: nowrap;
 }
 .field_value, form#Create th, form#Create td, .top {
     vertical-align: top;
