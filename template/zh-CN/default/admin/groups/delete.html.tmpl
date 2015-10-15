@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -22,7 +22,7 @@
 
 <table id="admin_table">
   <tr class="column_header">
-    <th>栏位</th>
+    <th>字段</th>
     <th>值</th>
   </tr>
   <tr>
@@ -42,11 +42,11 @@
 <form method="post" action="editgroups.cgi">
   [% IF group.members_non_inherited.size %]
     <p><b>[% group.members_non_inherited.size FILTER html %]
-      位使用者直属於此群组。你无法在群组中还有使用者时删除它。</b>
+      位用户直属于此群组。你无法在群组中还有用户时删除它。</b>
 
     <br><a href="editusers.cgi?action=list&amp;groupid=
-                 [%- group.id FILTER uri %]&amp;grouprestrict=1">显示有哪些使用者</a>
-    - <label><input type="checkbox" name="removeusers">删除此群组中的所有使用者。</label></p>
+                 [%- group.id FILTER uri %]&amp;grouprestrict=1">显示有哪些用户</a>
+    - <label><input type="checkbox" name="removeusers">删除此群组中的所有用户。</label></p>
   [% END %]
 
   [% IF group.granted_by_direct(constants.GROUP_MEMBERSHIP).size %]
@@ -59,7 +59,7 @@
   [% END %]
 
   [% IF group.bugs.size %]
-    <p><b>[% group.bugs.size FILTER html %] 个 [% terms.bug %] 回报属於只有此群组可浏览。
+    <p><b>[% group.bugs.size FILTER html %] 个 [% terms.bug %] 回报属于只有此群组可浏览。
      你无法在群组中还有[% terms.bugs %]时删除它。</b>
 
     <br><a href="buglist.cgi?field0-0-0=bug_group&amp;type0-0-0=equals&amp;value0-0-0=
@@ -107,8 +107,8 @@
           [%- data.product.name FILTER html %]</a>
           ([% active.join(', ') FILTER html %])
           [% IF hidden %]
-            <strong>警告：此产品目前设定为隐藏。
-            删除此群组後，若无其他合适的群组时，将导致此产品变为公开。
+            <strong>警告：此产品目前设置为隐藏。
+            删除此群组后，若无其他合适的群组时，将导致此产品变为公开。
             </strong>
           [% END %]</li>
       [% END %]
@@ -131,8 +131,8 @@
 
   [% IF shared_queries %]
     <p>
-      <b>有 [% shared_queries %] 个已储存的搜寻分享给此一群组。</b><br>
-      如果你删除此群组，所有已储存的搜寻都会再次设定为私人状态。
+      <b>有 [% shared_queries %] 个已保存的搜索分享给此一群组。</b><br>
+      如果你删除此群组，所有已保存的搜索都会再次设置为私人状态。
     </p>
   [% END %]
 
@@ -144,7 +144,7 @@
   [% IF group.users.size || group.bugs.size || group.products.size
         || group.flags.size
   %]
-    <p><b>你必须勾选以上所有勾选框，或更正已指出的问题後，才能继续。</b></p>
+    <p><b>你必须勾选以上所有勾选框，或更正已指出的问题后，才能继续。</b></p>
   [% END %]
 
   <p>

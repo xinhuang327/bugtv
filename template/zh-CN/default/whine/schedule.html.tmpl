@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -19,38 +19,38 @@
   #         sort:  integer that sets execution order on named queries
   #%]
 
-[% title = "设定订阅" %]
+[% title = "设置订阅" %]
 [% PROCESS global/header.html.tmpl
   title = title
   doc_section = "using/index.html"
 %]
 
 <p>
-  「订阅」这项功能，是 Bugzilla 在一个固定的期间执行一项已储存的搜寻，并将搜寻结果所列出的 [% terms.bugs %] 以电子邮件传送。
+  「订阅」这项功能，是 Bugzilla 在一个固定的期间运行一项已保存的搜索，并将搜索结果所列出的 [% terms.bugs %] 以电子邮件发送。
 </p>
 
 <p>
-  要设定一个新的订阅事件，点选「新增事件」。
-  <br>只要输入信件主旨以及描述文字，就会和[% terms.bug %]清单一起寄出。
+  要设置一个新的订阅事件，点击「添加事件」。
+  <br>只要输入信件主旨以及描述文本，就会和[% terms.bug %]清单一起寄出。
 </p>
 
 <p>
-  要替事件设定排程，点选「新增排程」。
-  <br>排程的内容包括一天、一天中的某个时间，或是一个时间的间隔（例如每15分钟），以及电子邮件地址。
+  要替事件设置调度，点击「添加调度」。
+  <br>调度的内容包括一天、一天中的某个时间，或是一个时间的间隔（例如每15分钟），以及电子邮件地址。
   <br>电子邮件地址将会根据你的权限来决定是否可以变动。
-  <br>一个事件可以设定多组排程，以便对不同的使用者执行多次。
+  <br>一个事件可以设置多组调度，以便对不同的用户运行多次。
 </p>
 
 <p>
-  搜寻来自已储存的搜寻。<br>
-  已储存的搜寻是在执行<a href="query.cgi">搜寻</a>页面，并将该页面结果以指定的名称储存於 Bugzilla 中。<br>
-  点选「新增搜寻」，选择已储存的搜寻名称，并於 [% terms.bug %] 表格中加入标题。<br>
-  「排序」下的数字为选填。若有多笔搜寻排列，将会以该数字决定执行的顺序（从最小到最大）。<br>
-  如果勾选「每个 [% terms.bug %] 送出一封信」，那麽符合该搜寻的每个 [% terms.bug%] 都会寄出一封信。
+  搜索来自已保存的搜索。<br>
+  已保存的搜索是在运行<a href="query.cgi">搜索</a>页面，并将该页面结果以指定的名称保存于 Bugzilla 中。<br>
+  点击「添加搜索」，选择已保存的搜索名称，并于 [% terms.bug %] 表格中加入标题。<br>
+  「排序」下的数字为选填。若有多笔搜索排列，将会以该数字决定运行的顺序（从最小到最大）。<br>
+  如果勾选「每个 [% terms.bug %] 送出一封信」，那么符合该搜索的每个 [% terms.bug%] 都会寄出一封信。
 </p>
 
 <p>
-  所有时间为伺服器端时间 ([% local_timezone FILTER html %]) 。
+  所有时间为服务器端时间 ([% local_timezone FILTER html %]) 。
 </p>
 
 <form method="post" action="editwhines.cgi">
@@ -83,7 +83,7 @@
   </tr>
 
   <tr>
-    <th>在订阅讯息中的描述文字：</th>
+    <th>在订阅消息中的描述文本：</th>
     <td colspan="2">
       [% INCLUDE global/textarea.html.tmpl
          name           = "event_${event.key}_body"
@@ -97,7 +97,7 @@
   </tr>
 
   <tr>
-    <th>即使搜寻结果没有任何 [% terms.bugs %] ，仍然送出讯息：</th>
+    <th>即使搜索结果没有任何 [% terms.bugs %] ，仍然送出消息：</th>
     <td colspan="2">
       <input type="checkbox" name="event_[% event.key %]_mailifnobugs"
         [%- IF event.value.mailifnobugs == 1 %] checked [% END %]>
@@ -107,10 +107,10 @@
   [% IF event.value.schedule.size == 0 %]
 
     <tr>
-      <th>排程：</th>
+      <th>调度：</th>
       <td class="unset" colspan="2">
-        无任何排程可执行<br>
-        <input type="submit" value="新增排程"
+        无任何调度可运行<br>
+        <input type="submit" value="添加调度"
                name="add_schedule_[% event.key %]"
                id="add_schedule_[% event.key %]">
       </td>
@@ -119,12 +119,12 @@
   [% ELSE %]
 
     <tr>
-      <th>排程：</th>
+      <th>调度：</th>
       <td class="set" colspan="2">
 
         <table class="schedule_list">
           <tr>
-            <th>执行间隔</th>
+            <th>运行间隔</th>
             <th>
               [% IF mail_others %]
                 寄电子邮件到
@@ -153,7 +153,7 @@
                   <select name="mailto_type_[% schedule.id %]">
                     <option value="0" [% IF schedule.mailto_type == 0 %]
                                         selected
-                                      [% END %]>使用者</option>
+                                      [% END %]>用户</option>
                     <option value="1" [% IF schedule.mailto_type == 1 %]
                                         selected
                                       [% END %]>群组</option>
@@ -174,7 +174,7 @@
 
           <tr>
             <td colspan="3">
-              <input type="submit" value="新增排程"
+              <input type="submit" value="添加调度"
                      name="add_schedule_[% event.key %]"
                      id="add_schedule_[% event.key %]">
             </td>
@@ -190,10 +190,10 @@
   [% IF event.value.queries.size == 0 %]
 
     <tr>
-      <th>搜寻：</th>
+      <th>搜索：</th>
       <td>
-        无搜寻<br>
-        <input type="submit" value="新增搜寻"
+        无搜索<br>
+        <input type="submit" value="添加搜索"
                name="add_query_[% event.key %]"
                id="add_query_[% event.key %]">
       </td>
@@ -205,13 +205,13 @@
   [% ELSE %]
 
     <tr>
-      <th>搜寻：</th>
+      <th>搜索：</th>
       <td colspan="2">
 
         <table class="search_list">
           <tr>
             <th>排序</th>
-            <th>搜寻</th>
+            <th>搜索</th>
             <th>标题</th>
             <th colspan="2"></th>
           </tr>
@@ -256,7 +256,7 @@
 
           <tr>
             <td colspan="3">
-              <input type="submit" value="新增搜寻"
+              <input type="submit" value="添加搜索"
                      name="add_query_[% event.key %]"
                      id="add_query_[% event.key %]">
             </td>
@@ -276,7 +276,7 @@
 [% END %]
 
 <p>
-  <input type="submit" value="新增事件" name="add_event" id="add_event">
+  <input type="submit" value="添加事件" name="add_event" id="add_event">
 </p>
 
 </form>
@@ -296,7 +296,7 @@
     </select>
 
   [% ELSE %]
-    请浏览<a href="query.cgi">搜寻</a>页面并储存搜寻结果
+    请浏览<a href="query.cgi">搜索</a>页面并保存搜索结果
   [% END %]
 
 [%+ END %]
@@ -345,7 +345,7 @@
             ['29',   '每月29日',     ],
             ['30',   '每月30日',     ],
             ['31',   '每月31日',     ],
-            ['last', '每月最後一日', ],
+            ['last', '每月最后一日', ],
         ]
       %]
 

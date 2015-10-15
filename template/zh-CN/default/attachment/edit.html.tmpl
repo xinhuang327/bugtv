@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -21,6 +21,7 @@
   title = title
   header = header
   subheader = subheader
+  generate_api_token = 1
   doc_section = "using/editing.html#attachments"
   javascript_urls = ['js/attachment.js', 'js/field.js']
   style_urls = ['skins/standard/bug.css']
@@ -60,7 +61,7 @@
             [%+ attachment.datasize FILTER unitconvert %]
           [% ELSE %]
             <em>已删除</em>
-          [% END %]，由 [%+ INCLUDE global/user.html.tmpl who = attachment.attacher %] 於 [%+ attachment.attached FILTER time %] 建立
+          [% END %]，由 [%+ INCLUDE global/user.html.tmpl who = attachment.attacher %] 于 [%+ attachment.attached FILTER time %] 创建
           [% IF attachment.isprivate %]；
             <span class="bz_private">仅 <strong>[% Param('insidergroup') FILTER html %]</strong> 群组可见</span>
           [% END %]
@@ -84,7 +85,7 @@
         </div>
 
           <div id="attachment_filename">
-            <label for="filename">档名：</label>
+            <label for="filename">文件名：</label>
             <input type="text" size="20"  class="text block[% editable_or_hide %]"
                    id="filename" name="filename"
                    value="[% attachment.filename FILTER html %]">
@@ -98,12 +99,12 @@
           </div>
 
           <div id="attachment_creator">
-            <span class="label">建立者：</span>
+            <span class="label">创建者：</span>
             [%+ INCLUDE global/user.html.tmpl who = attachment.attacher %]
           </div>
 
           <div id="attachment_created">
-            <span class="label">建立於：</span>
+            <span class="label">创建于：</span>
             [%+ attachment.attached FILTER time %]
           </div>
 
@@ -154,10 +155,10 @@
         [% ELSIF !Param("allow_attachment_display") %]
           <div id="view_disabled">
             <p><b>
-              因 [% terms.Bugzilla %] 的安全性限制，此附件无法直接显示於浏览器中。
+              因 [% terms.Bugzilla %] 的安全性限制，此附件无法直接显示于浏览器中。
             </b></p>
             <p><b>
-              若要检视此附件，请先<a href="attachment.cgi?id=[% attachment.id %]">下载</a>。
+              若要查看此附件，请先<a href="attachment.cgi?id=[% attachment.id %]">下载</a>。
             </b></p>
           </div>
         [% ELSIF attachment.is_viewable %]
@@ -197,8 +198,8 @@
               %]
             [% ELSE %]
               <iframe id="viewFrame" src="attachment.cgi?id=[% attachment.id %]" sandbox>
-                <b>你无法在浏览附件的详细资料时同时浏览附件，因为你的浏览器并不支援 IFRAME 属性。
-               <a href="attachment.cgi?id=[% attachment.id %]">另开新视窗浏览</a>。</b>
+                <b>你无法在浏览附件的详细数据时同时浏览附件，因为你的浏览器并不支持 IFRAME 属性。
+               <a href="attachment.cgi?id=[% attachment.id %]">另开新窗口浏览</a>。</b>
               </iframe>
             [% END %]
 
@@ -234,7 +235,7 @@
           <div id="noview">
             <p><b>
               无法在你的浏览器中浏览该附件，因为它的 MIME 类别
-              ([% attachment.contenttype FILTER html %]) 并非你的浏览器支援可以显示的种类。
+              ([% attachment.contenttype FILTER html %]) 并非你的浏览器支持可以显示的种类。
             </b></p>
             <p><b>
               <a href="attachment.cgi?id=[% attachment.id %]">下载该附件</a>。
@@ -289,7 +290,7 @@
 
 <div id="attachment_actions">
   <span class="label">动作：</span>
-  <a href="attachment.cgi?id=[% attachment.id %]">检视</a>
+  <a href="attachment.cgi?id=[% attachment.id %]">查看</a>
   [% IF use_patchviewer %]
     | <a href="attachment.cgi?id=[% attachment.id %]&amp;action=diff">比较差异 (Diff)</a>
   [% END %]

@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -20,10 +20,10 @@
 [% body %]
 
 [% IF author.login == recipient.login %]
-  如要编辑你的订阅排程，点选以下网址：
+  如要编辑你的订阅调度，点击以下网址：
   [%+ urlbase %]editwhines.cgi
 [% ELSE %]
-  此搜寻由[% author.login %]排定。
+  此搜索由[% author.login %]排定。
 [% END %]
 
 
@@ -52,10 +52,10 @@
   [% END %]
 
   [% IF author.login == recipient.login %]
-以 [% terms.bug %] 清单检视： [% urlbase %]buglist.cgi?cmdtype=runnamed&namedcmd=[% query.name FILTER uri %]
+以 [% terms.bug %] 清单查看： [% urlbase %]buglist.cgi?cmdtype=runnamed&namedcmd=[% query.name FILTER uri %]
   [% END %]
   [% END %]
 [% ELSE %]
 
-  找不到符合搜寻标准的 [% terms.bugs %] 。
+  找不到符合搜索标准的 [% terms.bugs %] 。
 [% END %]

@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -22,8 +22,8 @@
 
 [% IF hide_obsolete %]
   <div id="hidden_obsolete_message">
-    已将废弃的附件隐藏。如要检视所有附件（包括已废弃的附件），
-    <a href="attachment.cgi?bugid=[% bug.id FILTER html %]&amp;action=viewall">点此连结</a>。
+    已将废弃的附件隐藏。如要查看所有附件（包括已废弃的附件），
+    <a href="attachment.cgi?bugid=[% bug.id FILTER html %]&amp;action=viewall">点此链接</a>。
   </div>
 [% END %]
 
@@ -62,7 +62,7 @@
         [% END %]
       </td>
 
-      <td><a href="attachment.cgi?id=[% a.id %]&amp;action=edit">详细资料</a></td>
+      <td><a href="attachment.cgi?id=[% a.id %]&amp;action=edit">详细数据</a></td>
     </tr>
   </table>
 
@@ -79,8 +79,8 @@
       %]
     [% ELSE %]
       <iframe src="attachment.cgi?id=[% a.id %]" class="viewall_frame" sandbox>
-        <b>你无法在此页面浏览附件，原因为你的浏览器不支援
-        IFRAME 属性。<a href="attachment.cgi?id=[% a.id %]">以另开视窗的方式浏览附件</a>。</b>
+        <b>你无法在此页面浏览附件，原因为你的浏览器不支持
+        IFRAME 属性。<a href="attachment.cgi?id=[% a.id %]">以另开窗口的方式浏览附件</a>。</b>
       </iframe>
     [% END %]
   [% ELSE %]

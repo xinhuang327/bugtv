@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -11,8 +11,8 @@
   #%]
 
 [% PROCESS global/header.html.tmpl
-  title = "新增关键字"
-  subheader = "此页面允许你新增关键字。"
+  title = "添加关键字"
+  subheader = "此页面允许你添加关键字。"
   style_urls = ['skins/standard/admin.css']
 %]
 
@@ -37,7 +37,7 @@
   </table>
 
   <input type="hidden" name="id" value="-1">
-  <input type="submit" id="create" value="新增">
+  <input type="submit" id="create" value="添加">
   <input type="hidden" name="action" value="new">
   <input type="hidden" name="token" value="[% token FILTER html %]">
 </form>

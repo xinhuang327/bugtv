@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -32,10 +32,10 @@
       YAHOO.bugzilla.commentTagging.label = '意见标签：';
       YAHOO.bugzilla.commentTagging.min_len_error =
         '意见标签必须至少
-        [%~ " " _ constants.MIN_COMMENT_TAG_LENGTH FILTER js %] 个字元。';
+        [%~ " " _ constants.MIN_COMMENT_TAG_LENGTH FILTER js %] 个字符。';
       YAHOO.bugzilla.commentTagging.max_len_error =
-        '意见标签不能长於
-        [%~ " " _ constants.MAX_COMMENT_TAG_LENGTH FILTER js %] 个字元。';
+        '意见标签不能长于
+        [%~ " " _ constants.MAX_COMMENT_TAG_LENGTH FILTER js %] 个字符。';
     </script>
   [% END %]
 [% END %]
@@ -194,7 +194,8 @@
         (<span id="alias_nonedit_display">[% bug.alias.join(', ') FILTER html %]</span>)
       [% END %]
       - <span id="short_desc_nonedit_display">[% bug.short_desc FILTER quoteUrls(bug) %]</span>
-      [% IF bug.check_can_change_field('short_desc', 0, 1) %]
+      [% can_edit_short_desc = bug.check_can_change_field('short_desc', 0, 1) %]
+      [% IF can_edit_short_desc %]
         <small>(<a href="#" id="summary_edit_action">编辑</a>)</small>
       [% END %]
      </span>
@@ -202,7 +203,7 @@
     <div id="summary_input">
       [% INCLUDE "bug/field-label.html.tmpl"
         field = bug_fields.short_desc
-        editable = 1
+        editable = can_edit_short_desc
         accesskey = "s"
         tag_name = 'span'
       %]
@@ -229,20 +230,12 @@
     [%#  PRODUCT  #%]
     [%#############%]
     <tr>
-      [% INCLUDE "bug/field-label.html.tmpl"
-         field = bug_fields.product
-         desc_url = 'describecomponents.cgi'
-         value = bug.product
-        %]
-      <td class="field_value" id="field_container_product">
-        [% INCLUDE "global/product-select.html.tmpl"
-           id    => "product"
-           name  => "product"
-           value => bug.product
-           products => bug.choices.product
-           isselect => bug.check_can_change_field('product', 0, 1)
-         %]
-       </td>
+      [% INCLUDE bug/field.html.tmpl
+          bug = bug, field = bug_fields.product, value = bug.product
+          override_legal_values = bug.choices.product
+          desc_url = "describecomponents.cgi"
+          editable = bug.check_can_change_field('product', 0, 1)
+      %]
     </tr>
 
     [%# Classification is here so that it can be used in value controllers
@@ -270,7 +263,8 @@
     </tr>
     <tr>
       [% INCLUDE "bug/field-label.html.tmpl"
-        field = bug_fields.version editable = 1 %]
+          field = bug_fields.version
+          editable = bug.check_can_change_field('version', 0, 1) %]
 
       [% PROCESS select selname => "version" %]
     </tr>
@@ -278,14 +272,17 @@
     [%# PLATFORM #%]
     [%############%]
     <tr>
+      [% can_edit_rep_platform = bug.check_can_change_field('rep_platform', 0, 1) %]
       [% INCLUDE "bug/field-label.html.tmpl"
-           field = bug_fields.rep_platform, editable = 1, accesskey = "h" %]
+           field = bug_fields.rep_platform,
+           editable = can_edit_rep_platform,
+           accesskey = "h" %]
       <td class="field_value">
-       [% INCLUDE bug/field.html.tmpl
+        [% INCLUDE bug/field.html.tmpl
             bug = bug, field = bug_fields.rep_platform,
             no_tds = 1, value = bug.rep_platform
-            editable = bug.check_can_change_field('rep_platform', 0, 1) %]
-       [%+ INCLUDE bug/field.html.tmpl
+            editable = can_edit_rep_platform %]
+        [%+ INCLUDE bug/field.html.tmpl
             bug = bug, field = bug_fields.op_sys,
             no_tds = 1, value = bug.op_sys
             editable = bug.check_can_change_field('op_sys', 0, 1) %]
@@ -334,14 +331,15 @@
  [%###############################################################%]
     <tr>
       <th class="field_label">
-        <label for="priority" accesskey="i">
+        [% can_edit_priority = bug.check_can_change_field('priority', 0, 1) %]
+        <label [% IF can_edit_priority %]for="priority"[% END %] accesskey="i">
           <a href="page.cgi?id=fields.html#importance">重要性 (<u>I</u>)</a></label>：
       </th>
       <td>
        [% INCLUDE bug/field.html.tmpl
             bug = bug, field = bug_fields.priority,
             no_tds = 1, value = bug.priority
-            editable = bug.check_can_change_field('priority', 0, 1) %]
+            editable = can_edit_priority %]
        [%+ INCLUDE bug/field.html.tmpl
             bug = bug, field = bug_fields.bug_severity,
             no_tds = 1, value = bug.bug_severity
@@ -354,14 +352,19 @@
       <tr>
         [% INCLUDE "bug/field-label.html.tmpl"
           field = bug_fields.target_milestone
-          editable = 1
+          editable = bug.check_can_change_field('target_milestone', 0, 1)
         %]
         [% PROCESS select selname = "target_milestone" %]
       </tr>
     [% END %]
 
     [% IF Param("timetrackinggroup") && bug.deadline %]
-      [% INCLUDE bug/field.html.tmpl field = bug_fields.deadline, value = bug.deadline, editable = 0 %]
+      <tr>
+        <th class="field_label">
+          <a href="page.cgi?id=fields.html#deadline">截止期限</a>：
+        </th>
+        <td>[% bug.deadline FILTER html %]</td>
+      </tr>
     [% END %]
 [% END %]
 
@@ -372,11 +375,13 @@
 [% BLOCK section_people %]
 
     <tr>
-      <th class="field_label">
-        <a href="page.cgi?id=fields.html#assigned_to">负责人</a>：
-      </th>
+      [% can_edit_assigned_to = bug.check_can_change_field("assigned_to", 0, 1) %]
+      [% INCLUDE "bug/field-label.html.tmpl"
+          field = bug_fields.assigned_to
+          editable = can_edit_assigned_to
+      %]
       <td>
-        [% IF bug.check_can_change_field("assigned_to", 0, 1) %]
+        [% IF can_edit_assigned_to %]
           <div id="bz_assignee_edit_container" class="bz_default_hidden">
             <span>
               [% INCLUDE global/user.html.tmpl who = bug.assigned_to %]
@@ -397,7 +402,7 @@
             %]
             <br>
             <input type="checkbox" id="set_default_assignee" name="set_default_assignee" value="1">
-            <label id="set_default_assignee_label" for="set_default_assignee">将负责人设回预设值</label>
+            <label id="set_default_assignee_label" for="set_default_assignee">将负责人设回默认值</label>
           </div>
           <script type="text/javascript">
            hideEditableField('bz_assignee_edit_container',
@@ -421,13 +426,14 @@
 
     [% IF Param('useqacontact') %]
     <tr>
+      [% can_edit_qa_contact = bug.check_can_change_field("qa_contact", 0, 1) %]
       [% INCLUDE "bug/field-label.html.tmpl"
         field = bug_fields.qa_contact
-        editable = 1
+        editable = can_edit_qa_contact
         accesskey = "q"
       %]
       <td>
-        [% IF bug.check_can_change_field("qa_contact", 0, 1) %]
+        [% IF can_edit_qa_contact %]
           <div id="bz_qa_contact_edit_container" class="bz_default_hidden">
             <span>
               [% INCLUDE global/user.html.tmpl who = bug.qa_contact %]
@@ -449,7 +455,7 @@
             %]
             <br>
             <input type="checkbox" id="set_default_qa_contact" name="set_default_qa_contact" value="1">
-            <label for="set_default_qa_contact">将 QA 连络人设回预设值</label>
+            <label for="set_default_qa_contact">将 QA 连络人设回默认值</label>
           </div>
           <script type="text/javascript">
             hideEditableField('bz_qa_contact_edit_container',
@@ -483,13 +489,14 @@
 [%############################################################################%]
 [% BLOCK section_url_keyword_whiteboard %]
   <tr>
+    [% can_edit_bug_file_loc = bug.check_can_change_field("bug_file_loc", 0, 1) %]
     [% INCLUDE "bug/field-label.html.tmpl"
       field = bug_fields.bug_file_loc
-      editable = 1
+      editable = can_edit_bug_file_loc
       accesskey = "u"
     %]
     <td>
-      [% IF bug.check_can_change_field("bug_file_loc", 0, 1) %]
+      [% IF can_edit_bug_file_loc %]
         <span id="bz_url_edit_container" class="bz_default_hidden">
         [% IF is_safe_url(bug.bug_file_loc) %]
            <a href="[% bug.bug_file_loc FILTER html %]" target="_blank"
@@ -501,7 +508,7 @@
         (<a href="#" id="bz_url_edit_action">编辑</a>)</span>
       [% END %]
       <span id="bz_url_input_area">
-        [% url_output =  PROCESS input no_td=1 inputname => "bug_file_loc" size => "40" colspan => 2 %]
+        [% url_output = INCLUDE input no_td = 1 inputname = "bug_file_loc" size = 40 %]
         [% IF NOT bug.check_can_change_field("bug_file_loc", 0, 1)
               AND is_safe_url(bug.bug_file_loc) %]
           <a href="[% bug.bug_file_loc FILTER html %]"
@@ -526,10 +533,10 @@
     <tr>
       [% INCLUDE "bug/field-label.html.tmpl"
         field = bug_fields.status_whiteboard
-        editable = 1
+        editable = bug.check_can_change_field("status_whiteboard", 0, 1)
         accesskey = "w"
       %]
-      [% PROCESS input inputname => "status_whiteboard" size => "40" colspan => 2 %]
+      [% INCLUDE input inputname = "status_whiteboard" size = 40 %]
     </tr>
   [% END %]
 
@@ -561,12 +568,12 @@
   [% RETURN UNLESS bug.duplicates.size %]
   <tr>
     <th class="field_label">
-      <label for="duplicates">重复的 ([% bug.duplicates.size %])</label>：
+      <label>重复的 ([% bug.duplicates.size %])</label>：
     </th>
-    <td class="field_value" colspan="2">
+    <td class="field_value">
       <span id="duplicates">
         [% FOREACH dupe = bug.duplicates %]
-          [% dupe.id FILTER bug_link(dupe, use_alias => 1) FILTER none %][% " " %]
+          [% INCLUDE bug/link.html.tmpl bug = dupe, link_text = dupe.id, use_alias = 1 %][% " " %]
         [% END %]
       </span>
       (<a href="buglist.cgi?bug_id=[% bug.duplicate_ids.join(",") FILTER html %]">
@@ -594,7 +601,7 @@
     <tr>
       <th>&nbsp;</th>
 
-      <td colspan="2" id="show_dependency_tree_or_graph">
+      <td id="show_dependency_tree_or_graph">
         显示依赖关系<a href="showdependencytree.cgi?id=[% bug.bug_id %]&amp;hide_resolved=1">树</a>
 
         [% IF Param('webdotbase') %]
@@ -633,7 +640,7 @@
               [% ELSE %]
                 所有已选择群组中
               [% END %]
-              的使用者可以浏览这个
+              的用户可以浏览这个
               [%+ terms.bug %] ：
             </b>
             <p class="instructions">
@@ -664,7 +671,7 @@
 
     [% IF inagroup %]
       <div id="bz_enable_role_visibility_help">
-        <b>只有群组的成员可以变更属於该群组的
+        <b>只有群组的成员可以变更属于该群组的
           [%+ terms.bug %] 的可见性：</b>
       </div>
       <div id="bz_enable_role_visibility">
@@ -700,7 +707,7 @@
              和 QA 连络人
           [% END %]
           一定可以看见这个 [% terms.bug %] 。
-          这个部份的设定只有在 [% terms.bug %] 被限制在至少一个群组时，才会生效。
+          这个部份的设置只有在 [% terms.bug %] 被限制在至少一个群组时，才会生效。
         </p>
       </div>
     [% END %]
@@ -714,17 +721,17 @@
 [% BLOCK section_dates %]
   <tr>
     <th class="field_label">
-      回报於：
+      回报于：
     </th>
     <td>
-     於 [% bug.creation_ts FILTER time("%Y-%m-%d %H:%M %Z") %]
+     于 [% bug.creation_ts FILTER time("%Y-%m-%d %H:%M %Z") %]
      由 [% INCLUDE global/user.html.tmpl who = bug.reporter %] 回报
     </td>
   </tr>
 
   <tr>
     <th class="field_label">
-      变更於：
+      变更于：
     </th>
     <td>
       [% bug.delta_ts FILTER time FILTER replace(':\d\d$', '') FILTER replace(':\d\d ', ' ')%]
@@ -740,7 +747,9 @@
 [% BLOCK section_cclist %]
     <tr>
       <th class="field_label">
-        <label for="newcc" accesskey="a">寄件副本清单：</label>
+        <label [% IF user.id %]for="newcc"[% END %] accesskey="a">
+          寄件副本清单：
+        </label>
       </th>
       <td>
         [% IF user.id %]
@@ -754,7 +763,7 @@
             <br>
           [% END %]
         [% END %]
-        [% bug.cc.size FILTER html %] 位使用者
+        [% bug.cc.size FILTER html %] 位用户
         [% IF user.id %]
           [% IF bug.cc.contains( user.email ) %]，包括你
           [% END %]
@@ -768,7 +777,7 @@
           <br>
           [% IF user.id %]
             <div>
-              <div><label for="cc"><b>新增</b></label></div>
+              <div><label for="cc"><b>添加</b></label></div>
               [% INCLUDE global/userselect.html.tmpl
                   id => "newcc"
                   name => "newcc"
@@ -780,8 +789,7 @@
             </div>
           [% END %]
           [% IF bug.cc.size %]
-            <select id="cc" multiple="multiple" size="5"
-              [% IF bug.user.canedit %]name="cc"[% END %]>
+            <select id="cc" multiple="multiple" size="5" [% 'name="cc"' IF bug.user.canedit %]>
               [% FOREACH c = bug.cc %]
                 <option value="[% c FILTER email FILTER html %]">
                   [% c FILTER email FILTER html %]</option>
@@ -833,7 +841,7 @@
         <span title="你还是会收到指向你的旗标要求电子邮件通知。">
           <input type="checkbox" name="bug_ignored" id="bug_ignored" value="1"
                  [% ' checked="checked"' IF user.is_bug_ignored(bug.id) %]>
-          （关於这个 [% terms.bug %] 不要寄信通知我）
+          （关于这个 [% terms.bug %] 不要寄信通知我）
         </span>
       </td>
     </tr>
@@ -857,9 +865,7 @@
 
 [% BLOCK section_aliases %]
   <tr>
-    [% INCLUDE "bug/field-label.html.tmpl"
-       field = bug_fields.alias, editable = 1
-    %]
+    [% INCLUDE "bug/field-label.html.tmpl" field = bug_fields.alias %]
     <td>
       [% IF bug.alias.size %]
         [% bug.alias.join(', ') FILTER html %]
@@ -873,12 +879,9 @@
         <br>
         <div id="alias_edit_area">
           <div>
-            <div>
-              <label for="aliases">
-                <b>新增</b>
-              </label>
-            </div>
-              <input name="newalias" id="newalias" size="20">
+            <label for="newalias" class="field_label">添加</label>
+            <br>
+            <input name="newalias" id="newalias" size="20">
           </div>
           [% IF bug.alias.size %]
             <select id="alias" name="alias" multiple="multiple" size="5">
@@ -890,7 +893,6 @@
 
             <input type="checkbox" id="removealias" name="removealias">
             <label for="removealias">移除已选择的别名</label>
-
           [% END %]
         </div>
         <script type="text/javascript">
@@ -939,8 +941,8 @@
         [% END %]
         [% IF show_more_flags %]
           <span id="bz_flags_more_container" class="bz_default_hidden">
-            [% IF !bug_flags_set %]<em>尚未设定</em>[% END %]
-            (<a href="#" id="bz_flags_more_action">[% IF !bug_flags_set %]设定[% ELSE %]更多[% END %]旗标</a>)
+            [% IF !bug_flags_set %]<em>尚未设置</em>[% END %]
+            (<a href="#" id="bz_flags_more_action">[% IF !bug_flags_set %]设置[% ELSE %]更多[% END %]旗标</a>)
           </span>
           <script type="text/javascript">
             YAHOO.util.Dom.removeClass('bz_flags_more_container', 'bz_default_hidden');
@@ -972,9 +974,10 @@
   [% USE Bugzilla %]
   [% FOREACH field = Bugzilla.active_custom_fields %]
     <tr>
+      [%# Use PROCESS instead of INCLUDE, because extra_field_item is defined
+        # in the template and must be returned back. INCLUDE cannot do that. %]
       [% PROCESS bug/field.html.tmpl value = bug.${field.name}
-                                     editable = bug.check_can_change_field(field.name, 0, 1)
-                                     value_span = 2 %]
+                                     editable = bug.check_can_change_field(field.name, 0, 1) %]
     </tr>
     [% IF extra_field_item %]
       <tr>
@@ -1016,8 +1019,7 @@
     </span>
 
     [% FOREACH dep_bug = deps %]
-      [% dep_bug.id FILTER bug_link(dep_bug, use_alias => 1)
-                    FILTER none %][% " " %]
+      [% INCLUDE bug/link.html.tmpl bug = dep_bug, link_text = dep_bug.id, use_alias = 1 %][% " " %]
     [% END %]
     [% IF bug.check_can_change_field(field.name, 0, 1) %]
       <span id="[% field.name FILTER html %]_edit_container"
@@ -1056,7 +1058,7 @@
          field = bug_fields.remaining_time, editable = 1
       %]
       [% INCLUDE "bug/field-label.html.tmpl"
-         field = bug_fields.percentage_complete, editable = 1
+         field = bug_fields.percentage_complete
       %]
       <th>
         节省：
@@ -1125,7 +1127,7 @@
                id="newcommentprivacy"
                onClick="updateCommentTagControl(this, 'comment')">
         <label for="newcommentprivacy">
-          将意见设定为不公开（仅有
+          将意见设置为不公开（仅有
           <strong>[% Param('insidergroup') FILTER html %]</strong> 群组可见）
         </label>
       [% END %]
@@ -1145,7 +1147,7 @@
           [% END %]
           [% Hook.process("after_comment_textarea", 'bug/edit.html.tmpl') %]
         [% ELSE %]
-          你并未被允许在这个 [% terms.bug %] 新增留言。
+          你并未被允许在这个 [% terms.bug %] 添加留言。
         [% END %]
         <br>
         [% PROCESS commit_button id=""%]
@@ -1173,7 +1175,7 @@
               <legend>注意</legend>
               你需要
               <a href="show_bug.cgi?id=
-                      [%- bug.bug_id %]&amp;GoAheadAndLogIn=1">登入</a>
+                      [%- bug.bug_id %]&amp;GoAheadAndLogIn=1">登录</a>
               才能够发表意见，或对此 [% terms.bug %] 做变更。
             </fieldset>
           </td>
@@ -1242,7 +1244,7 @@
 [% BLOCK commit_button %]
   [% IF user.id %]
     <div class="knob-buttons">
-      <input type="submit" value="储存变更"
+      <input type="submit" value="保存变更"
              id="commit[% id FILTER css_class_quote %]">
     </div>
   [% END %]

@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -34,7 +34,7 @@
   </td>
 </tr>
 <tr>
-  <th><label for="initialowner">预设负责人：</label></th>
+  <th><label for="initialowner">缺省负责人：</label></th>
   <td>
     [% INCLUDE global/userselect.html.tmpl
        name => "initialowner"
@@ -47,7 +47,7 @@
 </tr>
 [% IF Param('useqacontact') %]
   <tr>
-    <th><label for="initialqacontact">预设 QA 连络人：</label></th>
+    <th><label for="initialqacontact">缺省 QA 连络人：</label></th>
     <td>
       [% INCLUDE global/userselect.html.tmpl
          name => "initialqacontact"
@@ -60,7 +60,7 @@
   </tr>
 [% END %]
 <tr>
-  <th><label for="initialcc">预设寄件副本清单：</label></th>
+  <th><label for="initialcc">缺省寄件副本清单：</label></th>
   <td>
     [% INCLUDE global/userselect.html.tmpl
        name     => "initialcc"
@@ -71,7 +71,7 @@
     %]
     <br>
     [% IF !Param("usemenuforusers") %]
-      <span class="bz_info"输入寄件副本清单时，多位连络者可用半形逗号 (,) 分隔。</span>
+      <span class="bz_info"输入寄件副本清单时，多位连络者可用半角逗号 (,) 分隔。</span>
     [% END %]
   </td>
 </tr>

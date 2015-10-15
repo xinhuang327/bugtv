@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -11,6 +11,7 @@
 
 [% PROCESS global/header.html.tmpl
   title = title
+  generate_api_token = 1
   yui = [ 'autocomplete', 'calendar', 'datatable', 'button' ]
   style_urls = ['skins/standard/bug.css']
   javascript_urls = [ "js/attachment.js", "js/util.js",
@@ -67,7 +68,7 @@ var status_comment_required = new Array();
     [% status.comment_required_on_change_from() ? 'true' : 'false' %]
 [% END %]
 
-TUI_alternates['expert_fields'] = '显示进阶栏位';
+TUI_alternates['expert_fields'] = '显示高端字段';
 // Hide the Advanced Fields by default, unless the user has a cookie
 // that specifies otherwise.
 TUI_hide_default('expert_fields');
@@ -96,7 +97,7 @@ TUI_hide_default('attachment_text_field');
   <tr>
     <td colspan="2">
       <a id="expert_fields_controller" class="controller bz_default_hidden"
-         href="javascript:TUI_toggle_class('expert_fields')">隐藏进阶栏位</a>
+         href="javascript:TUI_toggle_class('expert_fields')">隐藏高端字段</a>
       [%# Show the link if the browser supports JS %]
       <script type="text/javascript">
         YAHOO.util.Dom.removeClass('expert_fields_controller',
@@ -105,7 +106,7 @@ TUI_hide_default('attachment_text_field');
     </td>
     <td colspan="2">
       (<span class="required_star">*</span> =
-      <span class="required_explanation">必填栏位</span>)
+      <span class="required_explanation">必填字段</span>)
    </td>
   </tr>
 
@@ -228,13 +229,13 @@ TUI_hide_default('attachment_text_field');
       <td colspan="2" class="expert_fields">&nbsp;</td>
       <td>&nbsp;</td>
       <td id="os_guess_note" class="comment">
-        <div>我们对於你的
+        <div>我们对于你的
         [% IF Param('defaultplatform') %]
-          作业系统
+          操作系统
         [% ELSIF Param('defaultopsys') %]
-          硬体平台
+          硬件平台
         [% ELSE %]
-          作业系统及硬体平台
+          操作系统及硬件平台
         [% END %]
         做了推测。请检查是否正确。如果有任何错误，请做出必要的更正。</div>
       </td>
@@ -306,7 +307,7 @@ TUI_hide_default('attachment_text_field');
          emptyok => 1
          custom_userlist => assignees_list
        %]
-      <noscript>（如不填，则会设定为该子产品的预设负责人）</noscript>
+      <noscript>（如不填，则会设置为该子产品的缺省负责人）</noscript>
     </td>
   </tr>
 
@@ -325,7 +326,7 @@ TUI_hide_default('attachment_text_field');
          emptyok => 1
          custom_userlist => qa_contacts_list
        %]
-        <noscript>（如不填，则会设定为预设的 QA 连络人）</noscript>
+        <noscript>（如不填，则会设置为缺省的 QA 连络人）</noscript>
       </td>
     </tr>
 [% END %]
@@ -347,7 +348,7 @@ TUI_hide_default('attachment_text_field');
   </tr>
 
   <tr>
-    <th>预设[% field_descs.cc FILTER html %]：</th>
+    <th>缺省[% field_descs.cc FILTER html %]：</th>
     <td colspan="2">
       <div id="initial_cc">
       </div>
@@ -451,7 +452,7 @@ TUI_hide_default('attachment_text_field');
             product_name: '[% product.name FILTER js %]',
             summary_field: 'short_desc',
             options: {
-              MSG_LOADING: '搜寻可能重复的 [% terms.bugs %] 中...',
+              MSG_LOADING: '搜索可能重复的 [% terms.bugs %] 中...',
               MSG_EMPTY:   '找不到可能重复的 [% terms.bugs %] 。',
               SUMMARY:     '可能重复'
             }
@@ -494,7 +495,7 @@ TUI_hide_default('attachment_text_field');
           [% ' checked="checked"' IF comment_is_private %]
                onClick="updateCommentTagControl(this, 'comment')">
         <label for="comment_is_private">
-          将描述和新附加的附件设定为不公开（仅
+          将描述和新附加的附件设置为不公开（仅
           <strong>[% Param('insidergroup') FILTER html %]</strong>
           群组成员可见）
         </label>
@@ -510,14 +511,14 @@ TUI_hide_default('attachment_text_field');
     <th>附件：</th>
     <td colspan="3">
       <div id="attachment_false" class="bz_default_hidden">
-        <input type="button" value="新增附件" onClick="handleWantsAttachment(true)">
+        <input type="button" value="添加附件" onClick="handleWantsAttachment(true)">
       </div>
 
       <div id="attachment_true">
-        <input type="button" id="btn_no_attachment" value="不要新增附件"
+        <input type="button" id="btn_no_attachment" value="不要添加附件"
                class="bz_default_hidden"  onClick="handleWantsAttachment(false)">
         <fieldset>
-          <legend>新增附件</legend>
+          <legend>添加附件</legend>
           <table class="attachment_entry">
             [% PROCESS attachment/createformcontents.html.tmpl
                        flag_types = product.flag_types.attachment
@@ -587,7 +588,7 @@ TUI_hide_default('attachment_text_field');
           [% ELSE %]
             所有已选择的群组
           [% END %]
-          的使用者才能浏览这个
+          的用户才能浏览这个
           [+% terms.bug %] ：
         </strong>
       <br>
@@ -622,7 +623,7 @@ TUI_hide_default('attachment_text_field');
       <input type="submit" id="commit" value="送出 [% terms.Bug %]">
       &nbsp;&nbsp;&nbsp;&nbsp;
       <input type="submit" name="maketemplate" id="maketemplate"
-             value="将所有的值储存为书签模版"
+             value="将所有的值保存为书签模版"
              onclick="bz_no_validate_enter_bug=true" class="expert_fields">
     </td>
   </tr>

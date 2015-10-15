@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -14,6 +14,7 @@
 [% title = BLOCK %]在产品 '[% product.name FILTER html %]' 中加入子产品[% END %]
 [% PROCESS global/header.html.tmpl
   title = title
+  generate_api_token = 1
   style_urls = ['skins/standard/admin.css']
   yui = [ 'autocomplete' ]
   javascript_urls = [ "js/field.js" ]
@@ -26,7 +27,7 @@
 
   </table>
 
-  <input type="submit" id="create" value="新增">
+  <input type="submit" id="create" value="添加">
   <input type="hidden" name="action" value="new">
   <input type="hidden" name='product' value="[% product.name FILTER html %]">
   <input type="hidden" name="token" value="[% token FILTER html %]">

@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -29,14 +29,14 @@
 <h1>[% product.name FILTER html %]</h1>
 
 <div id="product_desc">[% product.description FILTER html_light %]</div>
-<p>选择一项子产品来检视该子产品中尚未关闭的 [% terms.bugs %] 。</p>
+<p>选择一项子产品来查看该子产品中尚未关闭的 [% terms.bugs %] 。</p>
 
 <table id="component_table">
   <tr>
     <th>子产品</th>
-    <th>预设负责人</th>
+    <th>缺省负责人</th>
     [% IF Param("useqacontact") %]
-      <th>预设 QA 连络人</th>
+      <th>缺省 QA 连络人</th>
     [% END %]
   </tr>
 

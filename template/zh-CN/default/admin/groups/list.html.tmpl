@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -18,7 +18,7 @@
 
 [% PROCESS global/header.html.tmpl
   title = "编辑群组"
-  subheader = "此页面允许你编辑群组及输入使用者至群组中。"
+  subheader = "此页面允许你编辑群组及输入用户至群组中。"
   style_urls = ['skins/standard/admin.css']
   doc_section = "administering/groups.html"
 %]
@@ -36,10 +36,10 @@
     allow_html_content => 1
    }
    {name               => 'userregexp'
-    heading            => '使用者正规表达式'
+    heading            => '用户正规表达式'
    }
    {name               => 'is_active_bug_group'
-    heading            => "使用於 $terms.Bugs"
+    heading            => "使用于 $terms.Bugs"
     align              => 'center'
    }
    {name               => 'type'
@@ -104,7 +104,7 @@
      }
      "1" => {
          override_content => 1
-         content => "使用者"
+         content => "用户"
      }
    }
 %]
@@ -115,37 +115,37 @@
   overrides = overrides
 %]
 
-<p><a href="editgroups.cgi?action=add">新增群组</a></p>
+<p><a href="editgroups.cgi?action=add">添加群组</a></p>
 
 <p>
    <b>名称</b><br>
-   用於 B<!-- -->ugzilla&rarr;user&rarr;in_group() 函数，以及所有自订的 cgi 档案中。<br>
-   也可以用於以电子邮件送出 [% terms.bugs %] 时，限制?[% terms.bug %] 於特定的群组中。
+   用于 B<!-- -->ugzilla&rarr;user&rarr;in_group() 函数，以及所有自订的 cgi 文件中。<br>
+   也可以用于以电子邮件送出 [% terms.bugs %] 时，限制 [% terms.bug %] 于特定的群组中。
 </p>
 
 <p>
    <b>描述</b><br>
-   於 [% terms.bug %] 的报告中显示。<br>
-   群组成员可以选择此 [% terms.bug %] 是否仅限制於同群组的其他成员可以看见。
+   于 [% terms.bug %] 的报告中显示。<br>
+   群组成员可以选择此 [% terms.bug %] 是否仅限制于同群组的其他成员可以看见。
 </p>
 
 <p>
-   <b>使用者正规表达式</b><br>
+   <b>用户正规表达式</b><br>
    选用。<br>
-   若勾选，则会将符合正规表达式的所有使用者均加入此群组中。别忘了加入字尾辨识字元 '$' 。<br>
+   若勾选，则会将符合正规表达式的所有用户均加入此群组中。别忘了加入后缀辨识字符 '$' 。<br>
    范例： '@mycompany\.com$'
 </p>
 
 <p>
-   <b>使用於[% terms.Bugs %]</b><br>
-   此一旗标决定此群组是否可以被用於 [% terms.bugs %] 中。<br>
-   如不选择，使用者将无法再加入 [% terms.bugs %] 到此一群组中，不过已於此群组中的
-   [% terms.bugs %] 并不会被影响。这麽做会比删除该群组还要好一点。
+   <b>使用于[% terms.Bugs %]</b><br>
+   此一旗标决定此群组是否可以被用于 [% terms.bugs %] 中。<br>
+   如不选择，用户将无法再加入 [% terms.bugs %] 到此一群组中，不过已于此群组中的
+   [% terms.bugs %] 并不会被影响。这么做会比删除该群组还要好一点。
 </p>
 
 <p>
    <b>类别</b><br>
-   此栏位用以辨别系统群组。
+   此字段用以辨别系统群组。
 </p>
 
 [% PROCESS global/footer.html.tmpl %]

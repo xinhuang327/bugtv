@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -25,9 +25,9 @@
 [%# This lists fields which use the user auto-completion feature and which
   # are not listed in field_descs. %]
 [% field_labels = { # Used by editcomponents.cgi
-                    "initialcc"               => "预设寄件副本清单",
-                    "initialowner"            => "预设负责人",
-                    "initialqacontact"        => "预设 QA 连络人",
+                    "initialcc"               => "缺省寄件副本清单",
+                    "initialowner"            => "缺省负责人",
+                    "initialqacontact"        => "缺省 QA 连络人",
                     # Used by process_bug.cgi
                     "masscc"                  => "寄件副本清单",
                     # Used by request.cgi
@@ -54,21 +54,21 @@
 
   <p>
     [% IF matchmultiple %]
-      你在前一页所输入的名称或电子邮件地址，在 Bugzilla 中符合多笔资料。
-      <br>请检视下列可能符合的清单，并选择你想要的使用者，
+      你在前一页所输入的名称或电子邮件地址，在 Bugzilla 中符合多笔数据。
+      <br>请查看下列可能符合的清单，并选择你想要的用户，
     [% ELSE %]
-      [% terms.Bugzilla %] 设定为无论在什麽时候你输入了名称或是一部份的电子邮件，都必须要确认。
+      [% terms.Bugzilla %] 设置为无论在什么时候你输入了名称或是一部份的电子邮件，都必须要确认。
       <br>以下是你所输入的名称／电子邮件，以及符合的帐号。
       请确认他们是否正确，
     [% END %]
     或回到前一页重新输入。
   </p>
 [% ELSE %]
-  [% PROCESS global/header.html.tmpl title="找不到符合的资料" %]
+  [% PROCESS global/header.html.tmpl title="找不到符合的数据" %]
   <p>
-    你在前一页所输入的名称或电子邮件地址，在 Bugzilla 中找不到符合的资料。
+    你在前一页所输入的名称或电子邮件地址，在 Bugzilla 中找不到符合的数据。
     [% IF !user.id %]
-      <b>注意：你现在是登出状态。只会显示完全符合的电子邮件地址。</b>
+      <b>注意：你现在是注销状态。只会显示完全符合的电子邮件地址。</b>
     [% END %]
   </p>
   <p>请回到前一页，并试试其他的名称或电子邮件地址。</p>
@@ -88,12 +88,12 @@
                 [% IF query.value.users.size > 1 %]
                   [% IF query.value.status == 'fail' %]
                     <span class="warning">
-                      符合多名使用者。
+                      符合多名用户。
                     </span>
                     请按上一页，并以更明确的名称或地址再次尝试。
                   [% ELSE %]
                     [% IF query.value.status == 'trunc' %]
-                      符合多於查询上限数量 ([% query.value.users.size %]) 的使用者：<br>
+                      符合多于查找上限数量 ([% query.value.users.size %]) 的用户：<br>
                     [% ELSE %]
                       符合：<br>
                     [% END %]
@@ -122,10 +122,10 @@
             [% ELSE %]
               <span class="warning">
                 [% IF query.key.length < 3 %]
-                  要搜寻的子字串太短
-                  (至少 3 个字元)
+                  要搜索的子字串太短
+                  (至少 3 个字符)
                 [% ELSE %]
-                  找不到符合的资料
+                  找不到符合的数据
                 [% END %]
               </span>
             [% END %]
@@ -140,7 +140,7 @@
 
   [% SET exclude_these = ['Bugzilla_login', 'Bugzilla_password'] %]
   [% FOREACH key IN matches.keys %]
-    [% exclude_these.push(key) IF cgi.param(key) == '' %]
+    [% exclude_these.push(key) IF Bugzilla.cgi.param(key) == '' %]
   [% END %]
   [% SET exclude = '^' _ exclude_these.join('|') _ '$' %]
   [% PROCESS "global/hidden-fields.html.tmpl" exclude = exclude %]

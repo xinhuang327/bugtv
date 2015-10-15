@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -24,10 +24,10 @@
   [% IF field == "data" && cgi.param("data") %]
     <div class="box">
       <p>
-        由於在表单中你所送出的资讯不足，所以我们无法储存你上传的档案。因为无法在传输过程中保留档案，因此，你必须重新附加档案，并且填妥前述不足的资讯。
+        由于在表单中你所送出的信息不足，所以我们无法保存你上传的文件。因为无法在传输过程中保留文件，因此，你必须重新附加文件，并且填妥前述不足的信息。
       </p>
       <p>
-        请以下列表单重新附加档案 <b>[% cgi.param(field) FILTER html %] </b>：
+        请以下列表单重新附加文件 <b>[% cgi.param(field) FILTER html %] </b>：
       </p>
       <p>
         <input type="file" id="data" name="data" size="50">

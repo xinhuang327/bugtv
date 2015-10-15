@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -28,7 +28,7 @@
         [% IF !otheruser.in_group('bz_sudo_protect') %]
           <br>
           <a href="relogin.cgi?action=prepare-sudo&amp;target_login=
-          [%- otheruser.login FILTER uri %]">sudo 此使用者</a>
+          [%- otheruser.login FILTER uri %]">sudo 此用户</a>
         [% END %]
       [% END %]
     [% ELSE %]
@@ -38,7 +38,7 @@
 </tr>
 [% IF default_authorizer.extern_id_used %]
   <tr>
-    <th><label for="extern_id">外部登入帐号：</label></th>
+    <th><label for="extern_id">外部登录帐号：</label></th>
     <td>
       [% IF editusers %]
         <input size="64" maxlength="64" name="extern_id"
@@ -78,7 +78,7 @@
       [% ELSIF password_complexity == "letters_numbers" %]
         （密码必须包含至少一个大写字母、一个小写字母以及一个数字。）
       [% ELSIF password_complexity == "letters_numbers_specialchars" %]
-        （密码必须包含至少一个字母、一个数字以及一个特殊字元。）
+        （密码必须包含至少一个字母、一个数字以及一个特殊字符。）
       [% END %]
       [% IF editform %]<br>
         （输入新密码进行变更。）
@@ -108,16 +108,16 @@
          defaultcontent = otheruser.disabledtext
          onchange       = "userDisabledTextOnChange(this);"
        %]<br>
-      （只要不留白，此帐号就无法登入，而此说明应解释原因为何。）
+      （只要不留白，此帐号就无法登录，而此说明应解释原因为何。）
     </td>
   </tr>
 [% END %]
 [% UNLESS editform %]
   <tr>
-    <th><label for="notify_user">通知使用者：</label></th>
+    <th><label for="notify_user">通知用户：</label></th>
     <td>
       <input type="checkbox" name="notify_user" id="notify_user" value="1">
-      （寄送含有帐号资讯的电子邮件给使用者。不包括密码。）
+      （寄送含有帐号信息的电子邮件给用户。不包括密码。）
     </td>
   </tr>
 [% END %]

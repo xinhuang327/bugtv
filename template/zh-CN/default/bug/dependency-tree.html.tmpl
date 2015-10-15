@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -44,7 +44,7 @@
     [% IF type == 1 %]
         [% tree_name = "dependson_tree" %]
         [% IF ids.size %]
-            依赖於
+            依赖于
         [% ELSE %]
             并未依赖任何[% '开启的' IF hide_resolved %][% terms.bugs %] 。
         [% END %]
@@ -108,7 +108,7 @@
       [%- INCLUDE buglink bug=bug bugid=bugid %]
     </span>
     [% IF global.seen.$bugid %]
-      <b><a title="已在上方显示；点选进入"
+      <b><a title="已在上方显示；点击进入"
             onclick="duplicated('[% bugid FILTER html %]')"
             href="#b[% bugid %]">(*)</a></b>
     [% ELSIF tree.dependencies.$bugid.size %]
@@ -129,7 +129,7 @@
   [% END %]
   <a id="b[% bugid %]"
      class="b [%+ extra_class FILTER none %]"
-     title="点选以展开或缩短此关系树。按 Ctrl 点选展开或缩短所有子关系树。"
+     title="点击以展开或缩短此关系树。按 Ctrl 点击展开或缩短所有子关系树。"
      [% extra_args FILTER none %]>&nbsp;&nbsp;</a>
 [% END %]
 

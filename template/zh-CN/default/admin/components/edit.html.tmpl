@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -19,9 +19,11 @@
   编辑产品 '[% product.name FILTER html %]' 的子产品 '[% comp.name FILTER html %]'
 [% END %]
 [% PROCESS global/header.html.tmpl
+  title = title
+  generate_api_token = 1
+  style_urls = ['skins/standard/admin.css']
   yui = [ 'autocomplete' ]
   javascript_urls = [ "js/field.js" ]
-  title = title
 %]
 
 <form method="post" action="editcomponents.cgi">
@@ -53,7 +55,7 @@
    <input type="hidden" name="componentold" value="[% comp.name FILTER html %]">
    <input type="hidden" name="product" value="[% product.name FILTER html %]">
    <input type="hidden" name="token" value="[% token FILTER html %]">
-   <input type="submit" value="储存设定" id="update">，或是
+   <input type="submit" value="保存设置" id="update">，或是
    <a href="editcomponents.cgi?action=del&amp;product=
             [%- product.name FILTER uri %]&amp;component=
             [%- comp.name FILTER uri %]">删除</a>此一子产品。

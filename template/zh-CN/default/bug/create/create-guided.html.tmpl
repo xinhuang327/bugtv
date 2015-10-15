@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -46,7 +46,7 @@ function PutDescription() {
 <p>检查两份最常被回报的 [% terms.bug %] 清单：</p>
 <p>
   <a href="duplicates.cgi?product=[% product.name FILTER uri %]&amp;format=simple"
-     target="somebugs">所有时间点的前 100 名 [% terms.bugs %]</a> （预设载入） |
+     target="somebugs">所有时间点的前 100 名 [% terms.bugs %]</a> （缺省加载） |
   <a href="duplicates.cgi?product=[% product.name FILTER uri %]&amp;format=simple&amp;sortby=delta&amp;reverse=1&amp;maxrows=100&amp;changedsince=14"
      target="somebugs">最近两周的热门 [% terms.bugs %]</a>
 </p>
@@ -57,8 +57,8 @@ function PutDescription() {
 </iframe>
 
 <p>
-    如果 [% terms.bug %] 不在上面，那麽试着输入一些有关的关键字来搜寻 [% terms.Bugzilla %] 。例如：
-    <kbd><b>pop3 信件</b></kbd>或<kbd><b>复制 贴上</b></kbd>。结果将会显示在上面。
+    如果 [% terms.bug %] 不在上面，那么试着输入一些有关的关键字来搜索 [% terms.Bugzilla %] 。例如：
+    <kbd><b>pop3 信件</b></kbd>或<kbd><b>复制 粘贴</b></kbd>。结果将会显示在上面。
 </p>
 
 [%# All bugs opened inside the past six months %]
@@ -75,14 +75,14 @@ function PutDescription() {
   </form>
 
 <p>
-  检视搜寻结果。如果显示<kbd><b>[% terms.zeroSearchResults %]</b></kbd>的讯息，代表 [% terms.Bugzilla %] 没找到符合的 [% terms.bugs %] 。看有没有打错字，或试试其他关键字。如果你找到的 [% terms.bug %] 看起来有点像你遇到的，请在後头加上一些资讯，而不是新增一个 [% terms.bug %] 。
+  查看搜索结果。如果显示<kbd><b>[% terms.zeroSearchResults %]</b></kbd>的消息，代表 [% terms.Bugzilla %] 没找到符合的 [% terms.bugs %] 。看有没有打错字，或试试其他关键字。如果你找到的 [% terms.bug %] 看起来有点像你遇到的，请在后头加上一些信息，而不是添加一个 [% terms.bug %] 。
 </p>
 
 
-<h3 id="step2">步骤 3 之 2 － 提供资讯</h3>
+<h3 id="step2">步骤 3 之 2 － 提供信息</h3>
 
 <p>
-  如果你试了几次搜寻但都找不到，那麽请回报这个 [% terms.bug %] 。
+  如果你试了几次搜索但都找不到，那么请回报这个 [% terms.bug %] 。
 </p>
 
 <form id="guided_form" method="post" action="post_bug.cgi">
@@ -124,10 +124,10 @@ function PutDescription() {
       </div>
 
       <p>
-        问题发生的区域。你可以藉由使用搜寻结果中类似的 [% terms.bugs %] 来选择正确的子产品，或是浏览
+        问题发生的区域。你可以借由使用搜索结果中类似的 [% terms.bugs %] 来选择正确的子产品，或是浏览
         <a href="describecomponents.cgi?product=[% product.name FILTER uri %]"
-           target="_blank" >子产品描述</a>的完整清单（在新视窗开启）
-        以获得更多资讯。
+           target="_blank" >子产品描述</a>的完整清单（在新窗口开启）
+        以获得更多信息。
       </p>
     </td>
   </tr>
@@ -146,7 +146,7 @@ function PutDescription() {
                   "Mac OS X", "Linux", "All", "Other" ] %]
 
   <tr>
-    <th>作业系统</th>
+    <th>操作系统</th>
     <td>
       [% PROCESS select sel = 'op_sys' %]
     </td>
@@ -162,7 +162,7 @@ function PutDescription() {
     <td>
       <input type="text" size="80" name="buildid" value="[% buildid FILTER html %]">
       <p>
-        这里请描述你所使用产品的正确版本。如果上述栏位呈现空白，或者你认为它是错的，请从产品的「帮助 &gt; 关於」查看。如果产品无法启动，请直接贴上你下载此产品的网址。
+        这里请描述你所使用产品的正确版本。如果上述字段呈现空白，或者你认为它是错的，请从产品的「帮助 &gt; 关于」查看。如果产品无法启动，请直接粘贴你下载此产品的网址。
       </p>
     </td>
   </tr>
@@ -191,7 +191,7 @@ function PutDescription() {
         </kbd>
         <br>
         <kbd>
-          <span class="good">好的例子</span>：当检查是否有新的 POP 信件时，关掉信件视窗会当掉
+          <span class="good">好的例子</span>：当检查是否有新的 POP 信件时，关掉信件窗口会当掉
         </kbd>
       </p>
     </td>
@@ -207,7 +207,7 @@ function PutDescription() {
         mandatory = 1
       %]
       <p>
-        请详细描述发生了什麽事。
+        请详细描述发生了什么事。
       </p>
       <p>
         <kbd>
@@ -217,7 +217,7 @@ function PutDescription() {
         <kbd>
           <span class="good">好的例子</span>：
           我在书签管理员中排序时当掉。<br>
-          在那之後，我最上层的书签 Q 到 Z 开头的都蒸发了。
+          在那之后，我最上层的书签 Q 到 Z 开头的都蒸发了。
         </kbd>
       </p>
     </td>
@@ -253,7 +253,7 @@ function PutDescription() {
         defaultcontent = "1.\n2.\n3."
       %]
       <p>
-        描述如何一步一步重制问题。请包含任何特殊的设定步骤。
+        描述如何一步一步重制问题。请包含任何特殊的设置步骤。
       </p>
     </td>
   </tr>
@@ -267,7 +267,7 @@ function PutDescription() {
         cols    = constants.COMMENT_COLS
       %]
       <p>
-        重制後发生什麽事？
+        重制后发生什么事？
       </p>
     </td>
   </tr>
@@ -281,14 +281,14 @@ function PutDescription() {
         cols    = constants.COMMENT_COLS
       %]
       <p>
-        软体应该怎样才对？
+        软件应该怎样才对？
       </p>
     </td>
   </tr>
 
   <tr bgcolor="[% tablecolour %]">
     <td valign="top" align="right">
-      <b>额外资讯</b>
+      <b>额外信息</b>
     </td>
     <td valign="top">
       [% INCLUDE global/textarea.html.tmpl
@@ -297,12 +297,12 @@ function PutDescription() {
         cols    = constants.COMMENT_COLS
       %]
       <p>
-        加上任何可能相关的资讯，例如你在使用的<b>布景</b>（这个 [% terms.bug %]
-        在预设布景下还会发生吗？），
-        或任何关於<b>你的电脑组态</b>的资讯。较长的资讯，例如 <b>stack trace</b> 或
-        <b>HTML testcase</b> ，应该使用「新增附件」连结。如果你觉得 build 设定也有关联，请在网址列输入
-        <kbd>about:buildconfig</kbd> ，并一并输入该资讯。<br><br>
-        如果你回报的是当掉的情况，请注明在哪个模组里软体当掉（例如：<kbd>在 gkhtml.dll 发生应用程式错误</kbd>。）
+        加上任何可能相关的信息，例如你在使用的<b>布景</b>（这个 [% terms.bug %]
+        在缺省布景下还会发生吗？），
+        或任何关于<b>你的电脑组态</b>的信息。较长的信息，例如 <b>stack trace</b> 或
+        <b>HTML testcase</b> ，应该使用「添加附件」链接。如果你觉得 build 设置也有关联，请在网址列输入
+        <kbd>about:buildconfig</kbd> ，并一并输入该信息。<br><br>
+        如果你回报的是当掉的情况，请注明在哪个模块里软件当掉（例如：<kbd>在 gkhtml.dll 发生应用程序错误</kbd>。）
       </p>
     </td>
   </tr>
@@ -312,7 +312,7 @@ function PutDescription() {
     <td>
       <select name="bug_severity">
         <option name="critical" value="critical">
-          Critical ：会导致当机，或者资料损毁。
+          Critical ：会导致当机，或者数据损毁。
         </option>
         <option name="major" value="major">
           Major ：主要的功能坏了。
@@ -350,8 +350,8 @@ function PutDescription() {
   就这样！非常感谢。如果有任何进度，将会以电子邮件通知。
 </p>
 <p>
-  请了解到我们收到一堆 [% terms.bug %] 回报－－可能要一段时间才会看到你的回报。你可以藉由清楚描述
-  [%+ terms.bug %] 来帮助我们更快了解问题所在，并回覆电子邮件中任何可能询问的问题。
+  请了解到我们收到一堆 [% terms.bug %] 回报－－可能要一段时间才会看到你的回报。你可以借由清楚描述
+  [%+ terms.bug %] 来帮助我们更快了解问题所在，并回复电子邮件中任何可能询问的问题。
 </p>
 
     </form>

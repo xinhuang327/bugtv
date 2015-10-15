@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -186,7 +186,7 @@
             剩余时数： [% bugs.$id.remaining_time FILTER format("%.2f") %] 小时
           </span>
           <span class="time_info">
-            截止期限： [% bugs.$id.deadline || "<b>未设定</b>" %]
+            截止期限： [% bugs.$id.deadline || "<b>未设置</b>" %]
           </span>
         </td>
         [% IF extra %]
@@ -265,6 +265,7 @@
       <button type="button" class="calendar_button" id="button_calendar_start_date"
               onclick="showCalendar('start_date')"><span>月历</span>
       </button>
+      <div id="con_calendar_start_date"></div>
       <span class="label">
         以及 <label accesskey="e" for="end_date">结束时间 (<u>E</u>)</label>:
       </span>
@@ -274,6 +275,7 @@
       <button type="button" class="calendar_button" id="button_calendar_end_date"
               onclick="showCalendar('end_date')"><span>月历</span>
       </button>
+	  <div id="con_calendar_end_date"></div>
       <br>
       <span class="bz_info">(日期为选填，若要输入则以 YYYY-MM-DD 格式输入)</span>
     </td>

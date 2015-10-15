@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -14,7 +14,7 @@
 
 [% title = BLOCK %]
   从 '[% field.description FILTER html %]' ([% field.name FILTER html %])
-  栏位中删除数值 '[% value.name FILTER html %]'
+  字段中删除数值 '[% value.name FILTER html %]'
 [% END %]
 
 [% PROCESS global/header.html.tmpl
@@ -24,15 +24,15 @@
 
 <table id="admin_table">
   <tr class="column_header">
-    <th>栏位</th>
+    <th>字段</th>
     <th>值</th>
   </tr>
   <tr>
-    <td>栏位名称</td>
+    <td>字段名称</td>
     <td>[% field.description FILTER html %]</td>
   </tr>
   <tr>
-    <td>栏位数值</td>
+    <td>字段数值</td>
     <td>[% value.name FILTER html %]</td>
   </tr>
   <tr>
@@ -59,13 +59,13 @@
       || value.controlled_values_array.size
 %]
 
-  <p>很抱歉，由於下列原因，无法将 '[% value.name FILTER html %]' 数值从 '[% field.description FILTER html %]' 栏位中删除：</p>
+  <p>很抱歉，由于下列原因，无法将 '[% value.name FILTER html %]' 数值从 '[% field.description FILTER html %]' 字段中删除：</p>
 
   <ul class="warningmessages">
     [% IF value.is_default %]
-      <li>'[% value.name FILTER html %]' 是 '[% field.description FILTER html %]' 栏位的预设值。
+      <li>'[% value.name FILTER html %]' 是 '[% field.description FILTER html %]' 字段的默认值。
         [% IF user.in_group('tweakparams') %]
-          在删除此数值之前，你必须先<a href="editparams.cgi?section=bugfields">调整此栏位的预设值</a>。
+          在删除此数值之前，你必须先<a href="editparams.cgi?section=bugfields">调整此字段的默认值</a>。
         [% END %]
       </li>
     [% END %]
@@ -82,12 +82,12 @@
 
     [% IF value_count == 1 %]
       <li>'[% value.name FILTER html %]' 是 '[% field.description FILTER html %]'
-          的最後一个数值，因此无法删除。
+          的最后一个数值，因此无法删除。
       </li>
     [% END %]
 
     [% IF value.controls_visibility_of_fields.size %]
-      <li>此数值控制下列栏位的可见性：<br>
+      <li>此数值控制下列字段的可见性：<br>
         [% FOREACH field = value.controls_visibility_of_fields %]
           <a href="editfields.cgi?action=edit&name=[% field.name FILTER uri %]"
             >[% field.description FILTER html %] ([% field.name FILTER html %])</a><br>
@@ -96,7 +96,7 @@
     [% END %]
 
     [% IF value.controlled_values_array.size %]
-      <li>此数值控制其他栏位的下列数值：<br>
+      <li>此数值控制其他字段的下列数值：<br>
        [% FOREACH field_name = value.controlled_values.keys %]
          [% FOREACH controlled = value.controlled_values.${field_name} %]
            <a href="editvalues.cgi?action=edit&field=

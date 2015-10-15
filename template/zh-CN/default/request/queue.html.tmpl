@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -11,6 +11,7 @@
 
 [% PROCESS global/header.html.tmpl
   title="要求列表"
+  generate_api_token = 1
   onload="var f = document.request_form; selectProduct(f.product, f.component, null, null, '任何');"
   javascript_urls=["js/productform.js", "js/field.js"]
   style_urls = ['skins/standard/buglist.css']
@@ -43,8 +44,8 @@
 [% END %]
 
 <p>
-当你登入的时候，预设值只显示你所做的要求以及你所收到的要求。你可以用下方的表格做调整。<br>
-当你登出之後，预设值显示的是并未限制於某一群组，且未解决的要求。
+当你登录的时候，默认值只显示你所做的要求以及你所收到的要求。你可以用下方的表格做调整。<br>
+当你注销之后，默认值显示的是并未限制于某一群组，且未解决的要求。
 </p>
 
 <form id="request_form" name="request_form" action="request.cgi" method="get">
@@ -152,7 +153,7 @@
       "attachment" => "附件" ,
       "requester"  => "要求者" ,
       "requestee"  => "被要求者" ,
-      "created"    => "已建立的" ,
+      "created"    => "已创建的" ,
       "category"   => "产品／子产品"    } %]
 
 [% DEFAULT display_columns = ["requester", "requestee", "type", "bug", "attachment", "created"]
@@ -188,7 +189,7 @@
   [% END %]
   [% PROCESS display_buglist %]
   <br><br>
-  <a href="request.cgi?[% urlquerypart FILTER html %]&amp;ctype=csv">以 CSV 清单方式检视</a>
+  <a href="request.cgi?[% urlquerypart FILTER html %]&amp;ctype=csv">以 CSV 清单方式查看</a>
 [% END %]
 
 [% PROCESS global/footer.html.tmpl %]
@@ -247,5 +248,5 @@
   [% NEXT UNLESS buglist.keys.size %]
   <a href="buglist.cgi?bug_id=
           [%- buglist.keys.nsort.join(",") FILTER html %]">以
-  [%+ terms.bug %] 清单方式检视</a>
+  [%+ terms.bug %] 清单方式查看</a>
 [% END %]

@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -28,15 +28,15 @@
   </script>
 [% END %]
 
-<p>你已储存的搜寻如下：</p>
+<p>你已保存的搜索如下：</p>
 
   <table id="saved_search_prefs">
     <tr class="column_header">
-      <th>搜寻</th>
-      <th>执行</th>
+      <th>搜索</th>
+      <th>运行</th>
       <th>编辑</th>
       <th>删除</th>
-      <th>於页尾显示</th>
+      <th>于页脚显示</th>
       [% may_share = user.in_group(Param('querysharegroup')) && queryshare_groups.size %]
       [% IF may_share %]
         <th>和一群人分享</th>
@@ -48,7 +48,7 @@
       <td>我的 [% terms.Bugs %]</td>
       <td>
         [% filtered_username = user.login FILTER uri %]
-        <a href="[% Param('mybugstemplate').replace('%userid%', filtered_username) %]">执行</a>
+        <a href="[% Param('mybugstemplate').replace('%userid%', filtered_username) %]">运行</a>
       </td>
       <td></td>
       <td></td>
@@ -67,7 +67,7 @@
         <td>[% q.name FILTER html %]</td>
         <td>
           <a href="buglist.cgi?cmdtype=dorem&amp;remaction=run&amp;namedcmd=[% q.name FILTER uri %]
-                   [% IF q.shared_with_group.id %]&amp;sharer_id=[% user.id FILTER uri %][% END %]">执行</a>
+                   [% IF q.shared_with_group.id %]&amp;sharer_id=[% user.id FILTER uri %][% END %]">运行</a>
         </td>
         <td>
           <a href="query.cgi?[% q.edit_link FILTER html %]&amp;known_name=
@@ -104,18 +104,18 @@
             [% IF q.shared_with_group.id %]
               (<a href="buglist.cgi?cmdtype=dorem&amp;remaction=run&amp;namedcmd=
                  [% q.name FILTER uri %]&amp;sharer_id=
-                 [% user.id FILTER uri %]">连结</a>)
+                 [% user.id FILTER uri %]">链接</a>)
             [% END %]
             [% IF user.can_bless %]
               <span [% IF !bless_group_ids.grep("^$q.shared_with_group.id\$").0
                      %]class="bz_default_hidden"[% END %]>
                 <input type="checkbox" id="force_[% q.id FILTER html %]"
                        name="force_[% q.id FILTER html %]" value="1">
-                <label for="force_[% q.id FILTER html %]">加到页尾</label>
+                <label for="force_[% q.id FILTER html %]">加到页脚</label>
               </span>
             [% END %]
             [% IF q.shared_with_users %]
-              （已和 [% q.shared_with_users FILTER html %] 位使用者分享）
+              （已和 [% q.shared_with_users FILTER html %] 位用户分享）
             [% END %]
           </td>
         [% END %]
@@ -125,20 +125,20 @@
   </table>
 
 [% IF user.can_bless %]
-  <p>注意：对於每个选择「加到页尾」的搜寻，在你按下「储存设定」键之後，将会把选择分享的搜寻加到群组中的每一位成员的页尾。</p>
+  <p>注意：对于每个选择「加到页脚」的搜索，在你按下「保存设置」键之后，将会把选择分享的搜索加到群组中的每一位成员的页脚。</p>
 [% END %]
 
 [% IF user.queries_available.size %]
-  <p>你可以使用这些已存并由他人分享的搜寻：</p>
+  <p>你可以使用这些已存并由他人分享的搜索：</p>
 
   <table id="shared_search_prefs">
     <tr class="column_header">
-      <th>搜寻</th>
+      <th>搜索</th>
       <th>分享者</th>
       <th>分享给</th>
-      <th>执行</th>
+      <th>运行</th>
       <th>编辑</th>
-      <th>显示於页尾</th>
+      <th>显示于页脚</th>
     </tr>
 
     [% FOREACH q = user.queries_available %]
@@ -149,7 +149,7 @@
         <td>
           <a href="buglist.cgi?cmdtype=dorem&amp;remaction=run&amp;namedcmd=
                    [% q.name FILTER uri %]&amp;sharer_id=
-                   [% q.user.id FILTER uri %]">执行</a>
+                   [% q.user.id FILTER uri %]">运行</a>
         </td>
         <td>
           <a href="query.cgi?[% q.edit_link FILTER html %]&amp;known_name=
@@ -166,5 +166,5 @@
     [% END %]
   </table>
 [% ELSE %]
-  <p>其他人并未和你分享搜寻。</p>
+  <p>其他人并未和你分享搜索。</p>
 [% END %]

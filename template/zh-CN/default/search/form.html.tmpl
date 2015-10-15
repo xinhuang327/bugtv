@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -105,9 +105,9 @@ TUI_hide_default('information_query');
 <div id="detailed_information" class="bz_section_title">
   <div id="information_query_controller" class="arrow">&#9660;</div>
   <a href="javascript:TUI_toggle_class('information_query')">
-    [% terms.Bug %] 的详细资讯
+    [% terms.Bug %] 的详细信息
   </a>
-  <span class="section_help">以下列栏位限制搜寻结果：
+  <span class="section_help">以下列字段限制搜索结果：
     [%+ field_descs.longdesc FILTER html %] 、 [%+ field_descs.bug_file_loc FILTER html %] 、
     [% IF Param('usestatuswhiteboard') %] [%+ field_descs.status_whiteboard FILTER html %] 、 [%+ END %]
     [% IF use_keywords %] [%+ field_descs.keywords FILTER html %] 、 [%+ END %]
@@ -162,7 +162,7 @@ TUI_hide_default('information_query');
 
   <div class="search_field_row">
     <span class="field_label field_label_sup">
-      搜寻结果中应该
+      搜索结果中应该
       <select name="bug_id_type" id="bug_id_type">
         <option value="anyexact"[% " selected" IF default.bug_id_type.0 == "anyexact" %]>只包括</option>
         <option value="nowords"[% " selected" IF default.bug_id_type.0 == "nowords" %]>不包括</option>
@@ -221,7 +221,7 @@ TUI_hide_default('information_query');
 [%# *** Email Numbering *** %]
   <div class="bz_section_title" id="people_filter">
     <div id="people_query_controller" class="arrow">&#9660;</div>
-    <a href="javascript:TUI_toggle_class('people_query')">以人为条件搜寻</a>
+    <a href="javascript:TUI_toggle_class('people_query')">以人为条件搜索</a>
     <span>将结果限制在一个人在一个 [% terms.bug %] 上的角色（例如 [% field_descs.assigned_to FILTER html %] 、
       [%+ field_descs.reporter FILTER html %] 、 [% field_descs.commenter FILTER html %]  ）。
     </span>
@@ -274,8 +274,8 @@ TUI_hide_default('information_query');
 [%# *** Bug Changes *** %]
 <div class="bz_section_title" id="history_filter">
   <div id="history_query_controller" class="arrow">&#9660;</div>
-  <a href="javascript:TUI_toggle_class('history_query')" >以变更历史为条件搜寻</a>
-  <span>将结果限制在一段特定时间中栏位如何变更</span>
+  <a href="javascript:TUI_toggle_class('history_query')" >以变更历史为条件搜索</a>
+  <span>将结果限制在一段特定时间中字段如何变更</span>
 </div>
 <ul class="bug_changes bz_search_section history_query" id="history_filter_section" >
   <li>

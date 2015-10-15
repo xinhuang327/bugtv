@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -33,9 +33,9 @@
 
     <p>
       [% IF author.login == recipient.login %]
-        <a href="[%+ urlbase FILTER html %]editwhines.cgi">点选此处以编辑你的订阅排程</a>
+        <a href="[%+ urlbase FILTER html %]editwhines.cgi">点击此处以编辑你的订阅调度</a>
       [% ELSE %]
-        此搜寻结果由 [% author.login FILTER html %] 排定。
+        此搜索结果由 [% author.login FILTER html %] 排定。
       [% END %]
     </p>
 
@@ -73,7 +73,7 @@
   [% END %]
 [% ELSE %]
 
-  <h3>找不到符合搜寻标准的 [% terms.bugs %] 。</h3>
+  <h3>找不到符合搜索标准的 [% terms.bugs %] 。</h3>
 [% END %]
 
   </body>

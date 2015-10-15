@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -11,7 +11,7 @@
   #%]
 
 [% title = BLOCK %]
-  在栏位 '[% field.description FILTER html %]' ([% field.name FILTER html %]) 新增数值
+  在字段 '[% field.description FILTER html %]' ([% field.name FILTER html %]) 添加数值
 [% END %]
 [% PROCESS global/header.html.tmpl
   title = title
@@ -19,7 +19,7 @@
 %]
 
 <p>
-  此页面允许你在 '[% field.description FILTER html %]' 栏位新增一个数值。
+  此页面允许你在 '[% field.description FILTER html %]' 字段添加一个数值。
 </p>
 
 <form method="post" action="editvalues.cgi">
@@ -48,7 +48,7 @@
       <tr>
         <th>&nbsp;</th>
         <td>
-          注意：开启／关闭的属性仅能於建立状态时设定。之後无法编辑。
+          注意：开启／关闭的属性仅能于创建状态时设置。之后无法编辑。
         </td>
       </tr>
     [% END %]
@@ -56,7 +56,7 @@
       <tr>
         <th>
           <label for="visibility_value_id">只在
-           [%+ field.value_field.description FILTER html %] 设定为以下数值时出现：
+           [%+ field.value_field.description FILTER html %] 设置为以下数值时出现：
           </label>
         </th>
         <td>
@@ -72,12 +72,12 @@
               </option>
             [% END %]
           </select>
-          <span class="bz_info">（若不设定，则此数值将永远显示。）</span>
+          <span class="bz_info">（若不设置，则此数值将永远显示。）</span>
         </td>
       </tr>
     [% END %]
   </table>
-  <input type="submit" id="create" value="新增">
+  <input type="submit" id="create" value="添加">
   <input type="hidden" name="action" value="new">
   <input type="hidden" name='field' value="[% field.name FILTER html %]">
   <input type="hidden" name="token" value="[% token FILTER html %]">

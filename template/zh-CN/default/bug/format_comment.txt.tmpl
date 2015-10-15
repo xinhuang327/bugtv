@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -28,7 +28,7 @@ X[% comment_body %]
 [% ELSIF comment.type == constants.CMT_HAS_DUPE %]
 *** [% terms.Bug %] [%+ comment.extra_data %] 被标记为和此 [% terms.bug %] 重复。 ***
 [% ELSIF comment.type == constants.CMT_ATTACHMENT_CREATED %]
-已建立附件 [% comment.extra_data %]
+已创建附件 [% comment.extra_data %]
 [% IF is_bugmail %]
   --> [% urlbase _ "attachment.cgi?id=" _ comment.extra_data _ "&action=edit" %]
 [% END %]

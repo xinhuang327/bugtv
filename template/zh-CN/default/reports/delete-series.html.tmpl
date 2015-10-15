@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -16,23 +16,23 @@
                                    style_urls = ['skins/standard/admin.css'] %]
 
 <p>
-  你即将从资料库中删除 <b>[% series_name FILTER none %]</b> 系列。
-  所有资料将永久删除。
+  你即将从数据库中删除 <b>[% series_name FILTER none %]</b> 系列。
+  所有数据将永久删除。
 </p>
 <p>
   [% IF series.creator %]
     此系列由 <a href="mailto:[% series.creator.email FILTER html %]">
-    [% series.creator.email FILTER html %]</a> 建立
+    [% series.creator.email FILTER html %]</a> 创建
   [% ELSE %]
-    此系列由 Bugzilla 自动建立
+    此系列由 Bugzilla 自动创建
   [% END %]
 
   [% IF series.public %]
     ，并且是公开的。
   [% ELSIF series.creator %]
-    ，并且仅限该使用者可见。
+    ，并且仅限该用户可见。
   [% ELSE %]
-    ，并且任何人均无法检视。
+    ，并且任何人均无法查看。
   [% END %]
 </p>
 

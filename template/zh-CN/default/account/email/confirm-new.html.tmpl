@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -12,7 +12,7 @@
   # expiration_ts: expiration date of the token.
   #%]
 
-[% title = BLOCK %]以 '[% email FILTER html %]' 建立新帐号[% END %]
+[% title = BLOCK %]以 '[% email FILTER html %]' 创建新帐号[% END %]
 [% PROCESS "global/header.html.tmpl"
            title = title
 %]
@@ -20,7 +20,7 @@
 [% password_complexity = Param('password_complexity') %]
 
 <p>
-要建立你的帐号，必须在下方的表单中输入密码。你的电子邮件地址以及真实姓名（如果有提供的话）会和你所做的变动一并显示。
+要创建你的帐号，必须在下方的表单中输入密码。你的电子邮件地址以及真实姓名（如果有提供的话）会和你所做的变动一并显示。
 </p>
 
 <form id="confirm_account_form" method="post" action="token.cgi">
@@ -39,13 +39,13 @@
       <th><label for="passwd1">输入你的密码</label>：</th>
       <td>
         <input type="password" id="passwd1" name="passwd1" value="" required>
-        （密码最少 [% constants.USER_PASSWORD_MIN_LENGTH FILTER none %] 个字元
+        （密码最少 [% constants.USER_PASSWORD_MIN_LENGTH FILTER none %] 个字符
         [% IF password_complexity == "mixed_letters" %]
           ，并且必须包含至少一个大写字母和一个小写字母
         [% ELSIF password_complexity == "letters_numbers" %]
           ，并且必须包含至少一个大写字母、一个小写字母以及一个数字
         [% ELSIF password_complexity == "letters_numbers_specialchars" %] 
-          ，并且必须包含至少一个字母、一个数字以及一个特殊字元
+          ，并且必须包含至少一个字母、一个数字以及一个特殊字符
         [% END ~%]
         。）
       </td>
@@ -56,23 +56,23 @@
     </tr>
     <tr>
       <th>&nbsp;</th>
-      <td><input type="submit" id="confirm" value="建立"></td>
+      <td><input type="submit" id="confirm" value="创建"></td>
     </tr>
   </table>
 </form>
 
 <p>
-如果在 <b>[% expiration_ts FILTER time("%Y-%m-%d %H:%M %Z") %]</b> 之前，未完成此一表单的话，将不会建立此一帐号。
+如果在 <b>[% expiration_ts FILTER time("%Y-%m-%d %H:%M %Z") %]</b> 之前，未完成此一表单的话，将不会创建此一帐号。
 </p>
 
 <p>
-如果你不想要以此电子邮件建立帐号的话，按下方的「取消建立帐号」键，你的所有资讯将会被删除。
+如果你不想要以此电子邮件创建帐号的话，按下方的「取消创建帐号」键，你的所有信息将会被删除。
 </p>
 
 <form id="cancel_account_form" method="post" action="token.cgi">
   <input type="hidden" name="t" value="[% token FILTER html %]">
   <input type="hidden" name="a" value="cancel_new_account">
-  <input type="submit" id="confirm" value="取消建立帐号">
+  <input type="submit" id="confirm" value="取消创建帐号">
 </form>
 
 [% PROCESS global/footer.html.tmpl %]

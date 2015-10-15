@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -27,7 +27,7 @@
   [% IF curpanel == -1 %]
     参数：索引
   [% ELSE %]
-    设定：[%+ current_panel.title FILTER html %]
+    设置：[%+ current_panel.title FILTER html %]
   [% END %]
 [% END %]
 
@@ -70,9 +70,9 @@
     <div id="contribute">
       <strong>备注：</strong>
       Bugzilla 完全由志愿参加者进行开发。
-      回馈给 Bugzilla 计画的最好方式就是做点
+      回馈给 Bugzilla 计划的最好方式就是做点
       <a href="http://www.bugzilla.org/contribute/">贡献</a>！
-      不一定要当程式设计师才能够贡献，有其他各种方式可以回馈。
+      不一定要当程序员才能够贡献，有其他各种方式可以回馈。
     </div>
 
     [% IF curpanel == -1 %]
@@ -80,7 +80,7 @@
     [% ELSE %]
         <p>
           此页面允许你编辑 Bugzilla 的基本运作参数。<br>
-          请小心！任何你勾选「重设」选项的参数将会回到系统预设值。
+          请小心！任何你勾选「重设」选项的参数将会回到系统默认值。
         </p>
 
         [%# CONTENT PANEL %]
@@ -89,7 +89,7 @@
           <input type="hidden" name="section" value="[% current_panel.name FILTER html %]">
           <input type="hidden" name="action" value="save">
           <input type="hidden" name="token" value="[% token FILTER html %]">
-          <input type="submit" id="save-params" value="储存设定">
+          <input type="submit" id="save-params" value="保存设置">
         </form>
     [% END %]
   </div>

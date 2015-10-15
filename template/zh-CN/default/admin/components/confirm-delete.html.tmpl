@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -23,7 +23,7 @@
 
 <table id="admin_table">
   <tr class="column_header">
-    <th>栏位</th>
+    <th>字段</th>
     <th>值</th>
   </tr>
   <tr>
@@ -35,13 +35,13 @@
     <td>[% comp.description FILTER html_light %]</td>
   </tr>
   <tr>
-    <td>预设的负责人</td>
+    <td>缺省的负责人</td>
     <td>[% comp.default_assignee.login FILTER html %]</td>
   </tr>
 
   [% IF Param('useqacontact') %]
     <tr>
-      <td>预设的 QA 连络人</td>
+      <td>缺省的 QA 连络人</td>
       <td>[% comp.default_qa_contact.login FILTER html %]</td>
     </tr>
   [% END %]
@@ -93,12 +93,12 @@
   [% IF !Param("allowbugdeletion") %]
     <p class="confirmation">
       很抱歉，此子产品中还有 [% comp.bug_count %] 个 [%+ terms.bug %]
-      等待处理。你必须将它[% '们' IF comp.bug_count > 1 %]分配到其他子产品之後，才能删除此子产品。
+      等待处理。你必须将它[% '们' IF comp.bug_count > 1 %]分配到其他子产品之后，才能删除此子产品。
     </p>
   [% ELSE %]
     <p class="confirmation">
       此子产品中有 [% comp.bug_count %] 个已输入的 [%+ terms.bug %] ！
-      当你删除此子产品时，<b>所有</b>已储存的 [% terms.bug %] 和它们的历史资讯也都会被删除。
+      当你删除此子产品时，<b>所有</b>已保存的 [% terms.bug %] 和它们的历史信息也都会被删除。
     </p>
   [% END %]
 

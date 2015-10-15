@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -26,7 +26,7 @@
 
 <table id="admin_table">
   <tr class="column_header">
-    <th>栏位</th>
+    <th>字段</th>
     <th>值</th>
 
   [% IF Param('useclassification') %]
@@ -184,7 +184,7 @@
       此产品中已输入
       [%+ product.bug_count FILTER html %] 个 [% terms.bugs %] ！
       当你删除此产品时，
-      <b>所有</b>已储存的 [% terms.bugs %] 和他们的历史记录也会一并删除。
+      <b>所有</b>已保存的 [% terms.bugs %] 和他们的历史记录也会一并删除。
     </p>
 
   [% END %]
@@ -200,7 +200,7 @@
   <form method="post" action="editproducts.cgi">
     <input type="checkbox" id="delete_series" name="delete_series" value=1>
     <label for="delete_series">
-      删除相关的系列（你也可以稍後检视
+      删除相关的系列（你也可以稍后查看
       <a href="chart.cgi?category=[% product.name FILTER html %]">「新图表」页面</a>来删除它们）。
     </label><p>
     <input type="submit" id="delete" value="是的，删除">

@@ -1,0 +1,3 @@
+find . -name "*.tmpl" | while read movie;do
+  opencc -i "$movie" -o "$movie" -c tw2sp.json
+done

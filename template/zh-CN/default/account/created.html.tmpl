@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -11,14 +11,14 @@
   #%]
 
 [% title = BLOCK %]
-  已送出建立新帐号 '[% login FILTER html %]' 的请求
+  已送出创建新帐号 '[% login FILTER html %]' 的请求
 [% END %]
 
 [% PROCESS global/header.html.tmpl title = title %]
 
 <p>
-  已寄出一封含有认证用连结的电子邮件。如果帐号没有被建立，该连结将会在
-  [% constants.MAX_TOKEN_AGE FILTER html %] 天後失效。
+  已寄出一封含有认证用链接的电子邮件。如果帐号没有被创建，该链接将会在
+  [% constants.MAX_TOKEN_AGE FILTER html %] 天后失效。
 </p>
 
 [% PROCESS global/footer.html.tmpl %]

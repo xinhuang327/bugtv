@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -26,11 +26,11 @@
   [% ELSIF reason == "missing_token" %]
     看起来你并非从正确的页面过来。
     其中一个原因是你直接在浏览器的网址列输入网址。这应该是安全的。
-    你点选了一个自动转址的网址，<b>但未经过你的同意</b>。
+    你点击了一个自动转址的网址，<b>但未经过你的同意</b>。
 
   [% ELSIF reason == "invalid_token" %]
     你对 [% script_name FILTER html %] 做出的变更中含有不正确的
-    token ，可能是有人想要盗用你的帐号，例如让你点选了一个自动转址的网址跳转到这里，<b>但未经过你的同意</b>。
+    token ，可能是有人想要盗用你的帐号，例如让你点击了一个自动转址的网址跳转到这里，<b>但未经过你的同意</b>。
   [% END %]
   <p>
     你确定你仍要做出这些变更吗？

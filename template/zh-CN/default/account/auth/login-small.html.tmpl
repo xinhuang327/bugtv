@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -25,7 +25,7 @@
   [% END %]
   [% script_url = login_target _ connector _ "GoAheadAndLogIn=1" %]
   <a id="login_link[% qs_suffix %]" href="[% script_url FILTER html %]"
-     onclick="return show_mini_login_form('[% qs_suffix %]')">登入</a>
+     onclick="return show_mini_login_form('[% qs_suffix %]')">登录</a>
 
   [% Hook.process('additional_methods') %]
 
@@ -34,7 +34,7 @@
         id="mini_login[% qs_suffix FILTER html %]">
     <input id="Bugzilla_login[% qs_suffix FILTER html %]" required
            name="Bugzilla_login" class="bz_login"
-      [% IF Param('emailsuffix') %]
+      [% IF login_not_email %]
         placeholder="帐号"
       [% ELSE %]
         type="email" placeholder="电子邮件地址"
@@ -51,7 +51,7 @@
     [% END %]
     <input type="hidden" name="Bugzilla_login_token"
            value="[% get_login_request_token() FILTER html %]">
-    <input type="submit" name="GoAheadAndLogIn" value="登入"
+    <input type="submit" name="GoAheadAndLogIn" value="登录"
             id="log_in[% qs_suffix %]">
     <a href="#" onclick="return hide_mini_login_form('[% qs_suffix %]')">[x]</a>
   </form>
@@ -64,7 +64,7 @@
         class="mini_forgot bz_default_hidden">
     <label for="login[% qs_suffix FILTER html %]">帐号：</label>
     <input name="loginname" size="20" id="login[% qs_suffix FILTER html %]" required
-      [% IF Param('emailsuffix') %]
+      [% IF login_not_email %]
         placeholder="你的帐号"
       [% ELSE %]
         type="email" placeholder="你的电子邮件地址"

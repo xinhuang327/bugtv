@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -17,18 +17,18 @@
 %]
 
 <p>
-  旗标是用来识别 [% terms.bug %] 或附件是否已被同意或被拒绝某些状态的一种标记。在使用者介面中，旗标以名称和状态符号显示：
-  "+" 代表同意， "-" 代表拒绝， "?" 代表使用者已要求设定旗标的状态。
+  旗标是用来识别 [% terms.bug %] 或附件是否已被同意或被拒绝某些状态的一种标记。在用户接口中，旗标以名称和状态符号显示：
+  "+" 代表同意， "-" 代表拒绝， "?" 代表用户已要求设置旗标的状态。
 </p>
 
 <p>
-  例如，你可以定义一种状态叫 "review" ，让使用者可以对浏览附件做出要求。当 patch 写作者要求浏览时，
+  例如，你可以定义一种状态叫 "review" ，让用户可以对浏览附件做出要求。当 patch 写作者要求浏览时，
   "review?" 字串就会出现在附件上。而当 patch 浏览者浏览该 patch 时，就会依 patch 是否通过浏览的条件，显示为
   "review+" 或 "review-" 。
 </p>
 
 <p>
-  你可以对特定的产品以及子产品限制旗标类型的清单。如果选择没有子产品的产品，那麽将只显示属於产品中至少一项子产品的旗标类型。
+  你可以对特定的产品以及子产品限制旗标类型的清单。如果选择没有子产品的产品，那么将只显示属于产品中至少一项子产品的旗标类型。
 </p>
 
 <form id="flagtype_form" name="flagtype_form" action="editflagtypes.cgi" method="get">
@@ -69,7 +69,7 @@
 [% PROCESS display_flag_types types=bug_types types_id='bugs' %]
 
 <p>
-  <a href="editflagtypes.cgi?action=enter&amp;target_type=bug">新增 [% terms.Bugs %] 的旗标类型</a>
+  <a href="editflagtypes.cgi?action=enter&amp;target_type=bug">添加 [% terms.Bugs %] 的旗标类型</a>
 </p>
 
 <h3>附件的旗标类型</h3>
@@ -77,7 +77,7 @@
 [% PROCESS display_flag_types types=attachment_types types_id='attachments' %]
 
 <p>
-  <a href="editflagtypes.cgi?action=enter&amp;target_type=attachment">新增附件的旗标类型</a>
+  <a href="editflagtypes.cgi?action=enter&amp;target_type=attachment">添加附件的旗标类型</a>
 </p>
 
 [% PROCESS global/footer.html.tmpl %]
@@ -104,7 +104,9 @@
     [% FOREACH type = types %]
 
       <tr class="[% IF type.is_active %]active[% ELSE %]inactive[% END %]">
-        <td><a href="editflagtypes.cgi?action=edit&amp;id=[% type.id %]">[% type.name FILTER html FILTER no_break %]</a></td>
+        <td class="nowrap">
+          <a href="editflagtypes.cgi?action=edit&amp;id=[% type.id %]">[% type.name FILTER html %]</a>
+        </td>
         <td>[% type.description FILTER html %]</td>
         <td class="right">[% type.sortkey FILTER html %]</td>
         <td>

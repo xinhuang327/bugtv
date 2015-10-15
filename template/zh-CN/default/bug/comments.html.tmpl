@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -15,7 +15,7 @@
 <!--
   /* Adds the reply text to the 'comment' textarea */
   function replyToComment(id, real_id, name) {
-      var prefix = "（回覆由 " + name + " 留下的意见 #" + id + " ）\n";
+      var prefix = "（回复由 " + name + " 留下的意见 #" + id + " ）\n";
       var replytext = "";
       [% IF user.settings.quote_replies.value == 'quoted_reply' %]
         /* pre id="comment_name_N" */
@@ -46,6 +46,8 @@
 
 [% DEFAULT mode = "show" %]
 [% user_cache = template_cache.users %]
+[% can_edit_comments = bug.check_can_change_field('longdesc', 0, 1) %]
+[% can_tag_comments = feature_enabled('jsonrpc') AND user.can_tag_comments %]
 
 <!-- This auto-sizes the comments and positions the collapse/expand links
      to the right. -->
@@ -53,16 +55,14 @@
 <tr>
 <td>
 
-[% FOREACH comment = comments %]
-  [% PROCESS a_comment %]
-[% END %]
+[% PROCESS display_comments %]
 
 [% IF mode == "edit" && user.id
       && user.settings.comment_box_position.value == "before_comments" %]
   <div class="bz_add_comment">
     <a href="#"
        onclick="return goto_add_comments();">
-       新增意见</a>
+       添加意见</a>
   </div>
 [% END %]
 
@@ -85,7 +85,7 @@
       [% IF user.settings.comment_box_position.value == "after_comments" && user.id %]
         <li class="bz_add_comment"><a href="#"
             onclick="return goto_add_comments('bug_status_bottom');">
-            新增意见</a></li>
+            添加意见</a></li>
       [% END %]
     </ul>
   [% END %]
@@ -96,10 +96,11 @@
 [%# Block for individual comments                                            #%]
 [%############################################################################%]
 
-[% BLOCK a_comment %]
-  [% RETURN IF comment.is_private AND NOT (user.is_insider || user.id == comment.author.id) %]
-  [% comment_text = comment.body_full %]
-  [% RETURN IF comment_text == '' AND (comment.work_time - 0) != 0 AND !user.is_timetracker %]
+[% BLOCK display_comments %]
+  [% FOREACH comment = comments %]
+    [% NEXT IF comment.is_private AND NOT (user.is_insider || user.id == comment.author.id) %]
+    [% comment_text = comment.body_full %]
+    [% NEXT IF comment_text == '' AND (comment.work_time - 0) != 0 AND !user.is_timetracker %]
 
     <div id="c[% comment.count %]" class="bz_comment[% " bz_private" IF comment.is_private %]
                 [% " bz_default_collapsed" IF comment.collapsed %]
@@ -119,8 +120,8 @@
             [% IF comment.collapsed %]
               <span class="bz_collapsed_actions">
             [% END %]
-            [% IF bug.check_can_change_field('longdesc', 0, 1) %]
-              [% IF user.can_tag_comments %]
+            [% IF can_edit_comments %]
+              [% IF can_tag_comments %]
                 [<a href="#"
                     onclick="YAHOO.bugzilla.commentTagging.toggle([% comment.id %], [% comment.count %]);return false">标签</a>]
               [% END %]
@@ -128,7 +129,7 @@
                 [% IF user.settings.quote_replies.value != 'off' %]
                   onclick="replyToComment('[% comment.count %]', '[% comment.id %]', '[% comment.author.name || comment.author.nick FILTER html FILTER js %]'); return false;"
                 [% END %]
-              >回覆</a>]
+              >回复</a>]
             [% END %]
             [% IF comment.collapsed %]
               </span>
@@ -145,7 +146,7 @@
           </span>
         [% END %]
 
-        [% IF mode == "edit" && user.is_insider && bug.check_can_change_field('longdesc', 0, 1) %]
+        [% IF mode == "edit" && can_edit_comments && user.is_insider %]
           <div class="bz_private_checkbox">
             <input type="hidden" value="1"
                    name="defined_isprivate_[% comment.id %]">
@@ -233,4 +234,5 @@
 </pre>
     [% Hook.process('a_comment-end', 'bug/comments.html.tmpl') %]
     </div>
+  [% END %]
 [% END %]

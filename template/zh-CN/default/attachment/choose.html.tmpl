@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -7,13 +7,13 @@
   #%]
 
 [% PROCESS global/header.html.tmpl
-   title = "定位或新增附件"
+   title = "定位或添加附件"
  %]
 
 <form name="choose-id" method="get" action="attachment.cgi">
   <p>以在下方表格输入附件编号的方式，浏览一个附件：</p>
   <p>附件编号：<input name="id" size="6" autofocus required>
-  <button name="action" value="edit" id="edit">详细资料</button>
+  <button name="action" value="edit" id="edit">详细数据</button>
   <button name="action" value="view" id="view">浏览</button>
   </p>
 </form>
@@ -26,9 +26,9 @@
 </form>
 
 <form method="get" action="attachment.cgi">
-  <p>或者，在下方输入 [% terms.bug %] 编号来新增附件：</p>
+  <p>或者，在下方输入 [% terms.bug %] 编号来添加附件：</p>
   <p>[% terms.Bug %] 编号：<input name="bugid" size="6" required>
-    <button name="action" value="enter" id="action">新增附件</button>
+    <button name="action" value="enter" id="action">添加附件</button>
   </p>
 </form>
 [% PROCESS global/footer.html.tmpl %]

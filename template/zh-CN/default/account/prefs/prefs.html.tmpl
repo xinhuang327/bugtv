@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -24,16 +24,16 @@
 
 [% filtered_login = user.login FILTER html %]
 
-[% tabs = [{ name => "settings", label => "一般设定",
+[% tabs = [{ name => "settings", label => "一般设置",
               link => "userprefs.cgi?tab=settings", saveable => "1",
               doc_section => "using/preferences.html#general-preferences" },
-            { name => "email", label => "电子邮件设定",
+            { name => "email", label => "电子邮件设置",
               link => "userprefs.cgi?tab=email", saveable => "1",
               doc_section => "using/preferences.html#email-preferences" },
-            { name => "saved-searches", label => "已储存的搜寻",
+            { name => "saved-searches", label => "已保存的搜索",
               link => "userprefs.cgi?tab=saved-searches", saveable => "1",
               doc_section => "using/preferences.html#saved-searches" },
-            { name => "account", label => "帐号资讯",
+            { name => "account", label => "帐号信息",
               link => "userprefs.cgi?tab=account", saveable => "1",
               doc_section => "using/preferences.html#account-information" },
             { name => "apikey", label => "API key",
@@ -55,6 +55,7 @@
 [% PROCESS global/header.html.tmpl
    title = current_tab.label
    subheader = filtered_login
+   generate_api_token = 1
    style_urls = ['skins/standard/admin.css']
    javascript_urls = ['js/util.js', 'js/field.js', 'js/TUI.js']
    doc_section = current_tab.doc_section
@@ -68,11 +69,12 @@
 
 [% IF changes_saved %]
   <div id="message">
-    对[% current_tab.label FILTER lower %]所做的变更已经储存。
+    对[% current_tab.label FILTER lower %]所做的变更已经保存。
 
     [% IF email_changes_saved %]
       <p>
         为了确认你的请求，我们已寄发一封电子邮件至你新的电子邮件地址。做为预防措施，我们也寄发了一封电子邮件至你原本的电子邮件地址，让你有需要时可以取消这个请求。
+        如果你并未收到此封电子邮件，你也可以在此处决定是否要<a href="token.cgi?t=[% email_token FILTER uri %]&amp;a=cxlem">取消电子邮件的变更</a>（尤其是当你把新的电子邮件地址拼错的时候）。
       </p>
     [% END %]
   </div>
@@ -93,7 +95,7 @@
     <input type="hidden" name="dosave" value="1">
     [% UNLESS dont_show_button %]
       <p>
-        <input type="submit" id="update" value="储存设定">
+        <input type="submit" id="update" value="保存设置">
       </p>
     [% END %]
   </form>

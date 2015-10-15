@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -9,22 +9,22 @@
 [% max_local = Param('maxlocalattachment') * 1024 %]
 [% max_limit = Param('maxattachmentsize')> max_local ? Param('maxattachmentsize') : max_local %]
 <tr class="attachment_data">
-  <th><label for="data">档案</label>：</th>
+  <th><label for="data">文件</label>：</th>
   <td>
-    <em>输入该档案在你的电脑的路径位址</em>（或者
+    <em>输入该文件在你的电脑的路径地址</em>（或者
     <a id="attachment_data_controller" href="javascript:TUI_toggle_class('attachment_text_field');
                                              javascript:TUI_toggle_class('attachment_data')"
-    >把文字贴上做为附件</a>）。<br>
+    >把文本粘贴做为附件</a>）。<br>
     <input type="file" id="data" name="data" size="50" onchange="DataFieldHandler()">
   </td>
 </tr>
 <tr class="attachment_text_field">
-  <th><label for="attach_text">档案</label>：</th>
+  <th><label for="attach_text">文件</label>：</th>
   <td>
-   <em>贴上文字做为附件</em>（或者
+   <em>粘贴文本做为附件</em>（或者
     <a id="attachment_text_field_controller" href="javascript:TUI_toggle_class('attachment_text_field');
                                                    javascript:TUI_toggle_class('attachment_data')"
-    >附加一个档案</a>）。<br>
+    >附加一个文件</a>）。<br>
     <textarea id="attach_text" name="attach_text" cols="80" rows="15"
               onkeyup="TextFieldHandler()" onblur="TextFieldHandler()"></textarea>
   </td>
@@ -80,14 +80,14 @@
 </tr>
 
 [% BLOCK content_types %]
-  [% mimetypes = [{type => "text/plain", desc => "纯文字 (text/plain)"},
+  [% mimetypes = [{type => "text/plain", desc => "纯文本 (text/plain)"},
                   {type => "text/html",  desc => "HTML (text/html)"},
                   {type => "application/xml", desc => "XML (application/xml)"},
                   {type => "image/gif",  desc => "GIF 图档 (image/gif)"},
                   {type => "image/jpeg", desc => "JPEG 图档 (image/jpeg)"},
                   {type => "image/png",  desc => "PNG 图档 (image/png)"},
-                  {type => "application/pdf", desc => "PDF 文件 (application/pdf)"},
-                  {type => "application/octet-stream", desc => "二进制档案 (application/octet-stream)"}]
+                  {type => "application/pdf", desc => "PDF 文档 (application/pdf)"},
+                  {type => "application/octet-stream", desc => "二进制文件 (application/octet-stream)"}]
   %]
   [% Hook.process("mimetypes", "attachment/createformcontents.html.tmpl") %]
 

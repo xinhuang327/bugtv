@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -11,7 +11,7 @@
   #%]
 
 [% title = BLOCK %]
-  编辑自订栏位 '[% field.name FILTER html %]' ([% field.description FILTER html %])
+  编辑自订字段 '[% field.name FILTER html %]' ([% field.description FILTER html %])
 [% END %]
 
 [% javascript = BLOCK %]
@@ -27,7 +27,7 @@
 %]
 
 <p>
-  「描述」是一个用来描述栏位，而且非常短的字串。将会在使用者介面使用它来当作这个自订栏位的标签。
+  「描述」是一个用来描述字段，而且非常短的字串。将会在用户接口使用它来当作这个自订字段的标签。
 </p>
 
 <form id="edit_field" action="editfields.cgi" method="GET">
@@ -41,13 +41,13 @@
 
 [% IF field.obsolete %]
 <p>
-  <a href="editfields.cgi?action=del&amp;name=[% field.name FILTER html %]">自资料库中删除此自订栏位。</a><br>
-  只有在此自订栏位从未於 [% terms.bug %] 中使用过时，才会成功。
+  <a href="editfields.cgi?action=del&amp;name=[% field.name FILTER html %]">自数据库中删除此自订字段。</a><br>
+  只有在此自订字段从未于 [% terms.bug %] 中使用过时，才会成功。
 </p>
 [% END %]
 
 <p>
-  <a href="editfields.cgi">回到现有的自订栏位列表</a>
+  <a href="editfields.cgi">回到现有的自订字段列表</a>
 </p>
 
 [% PROCESS global/footer.html.tmpl %]

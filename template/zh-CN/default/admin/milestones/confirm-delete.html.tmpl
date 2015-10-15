@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -23,7 +23,7 @@
 
 <table id="admin_table">
   <tr class="column_header">
-    <th>栏位</th>
+    <th>字段</th>
     <th>值</th>
   </tr>
   <tr>
@@ -58,7 +58,7 @@
   <p class="confirmation">
     在此里程碑中还有 [% milestone.bug_count FILTER none %] 个 [%+ terms.bugs %] ！
     <br>当你删除此里程碑时，<b>所有</b> [% terms.bugs %] 的里程碑将会被指到
-    '[% product.name FILTER html %]' 产品的预设里程碑 [% product.default_milestone FILTER html %] 。
+    '[% product.name FILTER html %]' 产品的缺省里程碑 [% product.default_milestone FILTER html %] 。
   </p>
 [% END %]
 

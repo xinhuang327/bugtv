@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -24,7 +24,7 @@
     </td>
 
     <th>
-      <label for="enter_bug">可以在建立 [% terms.bug %] 时设定：</label>
+      <label for="enter_bug">可以在创建 [% terms.bug %] 时设置：</label>
     </th>
     <td>
       <input type="checkbox" id="enter_bug" name="enter_bug" value="1"
@@ -41,7 +41,7 @@
     </td>
 
     <th>
-      <label for="new_bugmail">将新的 [% terms.bug %] 显示於 [% terms.bug %] 通知信中：</label>
+      <label for="new_bugmail">将新的 [% terms.bug %] 显示于 [% terms.bug %] 通知信中：</label>
     </th>
     <td>
       <input type="checkbox" id="new_bugmail" name="new_bugmail" value="1"
@@ -99,7 +99,7 @@
     </td>
 
     <th>
-      <label for="visibility_field_id">当符合下列条件时，栏位才会出现：</label>
+      <label for="visibility_field_id">当符合下列条件时，字段才会出现：</label>
     </th>
     <td>
       <select name="visibility_field_id" id="visibility_field_id"
@@ -117,7 +117,7 @@
       </select>
       <br>
       <label for="visibility_values">
-        <strong>设定为以下其中任何一个：</strong>
+        <strong>设置为以下其中任何一个：</strong>
       </label>
       <br>
       <select multiple="multiple" size="5" name="visibility_values" 
@@ -144,7 +144,7 @@
       [% IF field.is_select %]
         <th>&nbsp;</th>
         <td>
-          <a href="editvalues.cgi?field=[% field.name FILTER uri %]">编辑此栏位的有效值</a>。
+          <a href="editvalues.cgi?field=[% field.name FILTER uri %]">编辑此字段的有效值</a>。
         </td>
       [% ELSE %]
         <th>
@@ -157,17 +157,17 @@
           <br>
           使用此标签可列出因
           [%+ field_types.${constants.FIELD_TYPE_BUG_ID} FILTER html %]
-          此栏位，而连至一个 [% terms.bug %] 的 [% terms.bugs %] 清单。
+          此字段，而连至一个 [% terms.bug %] 的 [% terms.bugs %] 清单。
           例如，描述是「此 [% terms.bug %] 和 ... 重复」时，
           反向关系就会是「和此 [% terms.bug %] 重复的 [% terms.bugs %] 」。
-          如果要停用此栏位的清单，请留白。
+          如果要停用此字段的清单，请留白。
         </td>
       [% END %]
 
       [% IF !field || field.is_select %]
         <th>
           <label for="value_field_id">
-            控制栏位值是否在此栏位中出现的栏位：
+            控制字段值是否在此字段中出现的字段：
           </label>
         </th>
         <td>

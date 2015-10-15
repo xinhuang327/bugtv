@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -24,7 +24,7 @@
 
 [% IF incomplete_data %]
   <p>
-    在 <a href="http://www.bugzilla.org/">Bugzilla</a> 里，曾经有过这样的问题：如果有大量的寄件副本清单或依赖性关系，会造成活动历史资料遗失。这已经修复了，但是已无法再次出现在你的活动历史表格中。无法确定的变更会以 '?' 字元做为开头。
+    在 <a href="http://www.bugzilla.org/">Bugzilla</a> 里，曾经有过这样的问题：如果有大量的寄件副本清单或依赖性关系，会造成活动历史数据遗失。这已经修复了，但是已无法再次出现在你的活动历史表格中。无法确定的变更会以 '?' 字符做为开头。
   </p>
 [% END %]
 
@@ -35,7 +35,7 @@
       <th>变更时间</th>
       <th>变更内容</th>
       <th>删除</th>
-      <th>新增</th>
+      <th>添加</th>
     </tr>
 
     [% FOREACH operation = operations %]

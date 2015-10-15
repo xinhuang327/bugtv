@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -12,15 +12,15 @@ To: [% user.email %]
 Subject: [[% terms.Bugzilla %]] 管理者使用了你的帐号 [% user.login -%]
 X-Bugzilla-Type: admin
 
-[%+ sudoer.identity %] 执行了 'sudo' 功能，进入了你的 [%+ terms.Bugzilla %] 帐号。
+[%+ sudoer.identity %] 运行了 'sudo' 功能，进入了你的 [%+ terms.Bugzilla %] 帐号。
 
 [% IF reason %]
-[%+ sudoer.identity %] 这麽做的理由如下：
+[%+ sudoer.identity %] 这么做的理由如下：
 
 [% reason FILTER wrap_comment %]
 [% ELSE %]
 [%+ sudoer.identity %] 并未说明为何这样做。
 [% END %]
 
-如果你觉得有什麽不对，请洽 [%+ Param("maintainer") %] 。
-关於此一功能的更多资讯，请参考 <[% urlbase %]page.cgi?id=sudo.html> 。
+如果你觉得有什么不对，请洽 [%+ Param("maintainer") %] 。
+关于此一功能的更多信息，请参考 <[% urlbase %]page.cgi?id=sudo.html> 。

@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -7,7 +7,7 @@
   #%]
 
 [% PROCESS global/header.html.tmpl
-  title = "纯文字 $terms.Bug 清单"
+  title = "纯文本 $terms.Bug 清单"
   h1 = ""
   style_urls = ['skins/standard/buglist.css']
   doc_section = "using/understanding.html"
@@ -262,7 +262,7 @@
                     [% ELSE %]
                       [% FOREACH flag = attachment.flags %]
                         [% flag.setter.nick FILTER html %]:
-                        [%+ flag.type.name FILTER html FILTER no_break %][% flag.status %]
+                        <span class="nowrap">[%+ flag.type.name FILTER html %][% flag.status %]</span>
                         [% IF flag.status == "?" && flag.requestee %]
                           ([% flag.requestee.nick FILTER html %])
                         [% END %][% ", " IF not loop.last() %]
@@ -351,7 +351,7 @@
           [% FOREACH type = bug.flag_types %]
             [% FOREACH flag = type.flags %]
                 [% flag.setter.nick FILTER html %]:
-                [%+ flag.type.name FILTER html FILTER no_break %][% flag.status %]
+                <span class="nowrap">[%+ flag.type.name FILTER html %][% flag.status %]</span>
                 [%+ IF flag.status == "?" && flag.requestee %]
                   ([% flag.requestee.nick FILTER html %])
                 [% END %]<br>

@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -23,7 +23,7 @@
 
 <table id="admin_table">
   <tr class="column_header">
-    <th>栏位</th>
+    <th>字段</th>
     <th>值</th>
   </tr>
   <tr>
@@ -33,7 +33,7 @@
     </td>
   </tr>
   <tr>
-    <td>档案名称：</td>
+    <td>文件名称：</td>
     <td>[% a.filename FILTER html %]</td>
   </tr>
   <tr>
@@ -41,15 +41,15 @@
     <td>[% a.description FILTER html %]</td>
   </tr>
   <tr>
-    <td>此附件位於 [% terms.Bug %] 中：</td>
+    <td>此附件位于 [% terms.Bug %] 中：</td>
     <td>[% a.bug_id FILTER bug_link(a.bug_id) FILTER none %]</td>
   </tr>
   <tr>
-    <td>建立者：</td>
+    <td>创建者：</td>
     <td>[% a.attacher.identity FILTER html %]</td>
   </tr>
   <tr>
-    <td>建立日期：</td>
+    <td>创建日期：</td>
     <td>[% a.attached FILTER time %]</td>
   </tr>
 </table>

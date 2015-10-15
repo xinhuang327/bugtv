@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -7,13 +7,13 @@
   #%]
 
 [% PROCESS global/header.html.tmpl
-  title = "变更栏位"
+  title = "变更字段"
   javascript_urls = [ "js/change-columns.js" ]
   onload = "initChangeColumns()"
 %]
 
 <p>
-  选择你想要在你的 [% terms.bug %] 清单中出现的栏位。注意此功能需要将 cookie 启用。
+  选择你想要在你的 [% terms.bug %] 清单中出现的字段。注意此功能需要将 cookie 启用。
 </p>
 
 [% field_descs.short_short_desc     = "摘要（前 60 个字）" %]
@@ -38,9 +38,9 @@
   <input type="hidden" name="rememberedquery" value="[% buffer FILTER html %]">
     <table>
       <tr>
-        <th><div id="avail_header" class="bz_default_hidden">可用的栏位</div></th>
+        <th><div id="avail_header" class="bz_default_hidden">可用的字段</div></th>
         <th></th>
-        <th colspan="2">已选的栏位</th>
+        <th colspan="2">已选的字段</th>
       </tr>
       <tr>
         <td>
@@ -111,7 +111,7 @@
              value="[% issue_hash_token([saved_search.id, saved_search.name]) FILTER html %]">
       <input type="checkbox" id="save_columns_for_search" checked="checked"
              name="save_columns_for_search" value="1">
-      <label for="save_columns_for_search">只在搜寻 '[% saved_search.name FILTER html %]' 时储存此栏位清单</label>
+      <label for="save_columns_for_search">只在搜索 '[% saved_search.name FILTER html %]' 时保存此字段清单</label>
     </p>
   [% ELSE %]
     <input type="hidden" name="token"
@@ -119,11 +119,11 @@
   [% END %]
 
   <p>
-    <input type="submit" id="change" value="变更栏位">
+    <input type="submit" id="change" value="变更字段">
   </p>
 
   <input type="submit" id="resetit" name="resetit"
-         value="设回 [% terms.Bugzilla %] 的预设值">
+         value="设回 [% terms.Bugzilla %] 的默认值">
 </form>
 
 [% PROCESS global/footer.html.tmpl %]

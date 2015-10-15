@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -52,7 +52,7 @@
     </tr>
 
     <tr>
-      <th>使用者正规表达式：</th>
+      <th>用户正规表达式：</th>
       <td>
         <input type="text" name="regexp" size="60"
                value="[% group.user_regexp FILTER html %]">
@@ -61,7 +61,7 @@
 
     <tr>
       <th>
-        图示网址：
+        图标网址：
         [% IF group.icon_url %]
           <img src="[% group.icon_url FILTER html %]" alt="[% group.name FILTER html %]">
         [% END %]
@@ -74,7 +74,7 @@
 
     [% IF group.is_bug_group %]
       <tr>
-        <th>使用於 [% terms.Bugs %]：</th>
+        <th>使用于 [% terms.Bugs %]：</th>
         <td>
           <input type="checkbox" name="isactive"
                  value="1" [% 'checked="checked"' IF group.is_active %]>
@@ -89,12 +89,12 @@
   <table id="grant_table">
     <tr>
       <th colspan="2">
-        属於此群组成员的群组<br>
-        （「以 <var>X</var> 标记的使用者已自动加入群组 [% group.name FILTER html %]」）
+        属于此群组成员的群组<br>
+        （「以 <var>X</var> 标记的用户已自动加入群组 [% group.name FILTER html %]」）
       </th>
       <th colspan="2">
-        此群组属於哪些群组的成员<br>
-        （「如果你属於群组 [% group.name FILTER html %] ，你就自动属於这些群组…」）
+        此群组属于哪些群组的成员<br>
+        （「如果你属于群组 [% group.name FILTER html %] ，你就自动属于这些群组…」）
       </th>
     </tr>
 
@@ -111,11 +111,11 @@
     <tr>
       <th colspan="2">
         可以授权成员加入此群组的群组<br>
-        （「以 <var>X</var> 标记的用者可以将其他使用者加到 [% group.name FILTER html %] 」）
+        （「以 <var>X</var> 标记的用者可以将其他用户加到 [% group.name FILTER html %] 」）
       </th>
       <th colspan="2">
         此群组可以授权成员加入其他群组<br>
-        （「在 [% group.name FILTER html %] 群组的使用者可以加其他使用者到…」）
+        （「在 [% group.name FILTER html %] 群组的用户可以加其他用户到…」）
       </th>
     </tr>
 
@@ -133,11 +133,11 @@
       <tr>
         <th colspan="2">
           可以看见此群组的群组<br>
-          （「以 <var>X</var> 标记的使用者可以看见 [% group.name FILTER html %] 群组中的使用者」）
+          （「以 <var>X</var> 标记的用户可以看见 [% group.name FILTER html %] 群组中的用户」）
         </th>
         <th colspan="2">
           此群组可以看见的群组<br>
-          （「在 [% group.name FILTER html %] 群组中的使用者可以看见这些群组中的使用者…」）
+          （「在 [% group.name FILTER html %] 群组中的用户可以看见这些群组中的用户…」）
         </th>
       </tr>
 
@@ -159,12 +159,12 @@
 
 <h4>大量搬移</h4>
 
-<p>你可以用此表格来对群组中的使用者做大量搬移。
+<p>你可以用此表格来对群组中的用户做大量搬移。
    <br>如果你从 Bugzilla 2.16 升级的话，这通常很有用。</p>
 
 <form method="post" action="editgroups.cgi">
   <fieldset id="mass-remove">
-    <legend>删除所有帐号符合下列正规表达式的使用者：</legend>
+    <legend>删除所有帐号符合下列正规表达式的用户：</legend>
     <input type="text" size="20" name="regexp">
     <input type="submit" id="remove-membership" value="删除">
 
@@ -181,7 +181,7 @@
 
 [% BLOCK select_pair %]
   <td>
-    <label for="[% "${name}_add" FILTER html %]">新增<br>（选择要新增的）</label>
+    <label for="[% "${name}_add" FILTER html %]">添加<br>（选择要添加的）</label>
     <br>
     <select multiple="multiple" size="[% size FILTER html %]"
             name="[% "${name}_add" FILTER html %]"

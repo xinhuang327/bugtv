@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -12,7 +12,7 @@
   #%]
 
 [% title = BLOCK %]
-  编辑 '[% field.description FILTER html %]' ([% field.name FILTER html %]) 栏位的数值 '[% value.name FILTER html %]'
+  编辑 '[% field.description FILTER html %]' ([% field.name FILTER html %]) 字段的数值 '[% value.name FILTER html %]'
 [% END %]
 [% PROCESS global/header.html.tmpl
   title = title
@@ -22,7 +22,7 @@
 <form method="post" action="editvalues.cgi">
   <table id="admin_table_edit">
     <tr>
-      <th><label for="value_new">栏位数值：</label></th>
+      <th><label for="value_new">字段数值：</label></th>
       <td>
         [% IF value.is_static %]
           <input type="hidden" name="value_new" id="value_new"
@@ -50,7 +50,7 @@
       <tr>
         <th>
           <label for="visibility_value_id">只在
-           [%+ field.value_field.description FILTER html %] 设定为以下数值时出现：
+           [%+ field.value_field.description FILTER html %] 设置为以下数值时出现：
           </label>
         </th>
         <td>
@@ -68,7 +68,7 @@
               </option>
             [% END %]
           </select>
-          <span class="bz_info">（若不设定，则此数值将永远显示。）</span>
+          <span class="bz_info">（若不设置，则此数值将永远显示。）</span>
         </td>
       </tr>
     [% END %]
@@ -78,7 +78,7 @@
            [%+ 'checked="checked"' IF value.is_active %]
            [%+ 'disabled="disabled"' IF value.is_default OR value.is_static %]>
            [% IF value.is_default %]
-             此数值是此栏位的预设值，无法被停用。
+             此数值是此字段的默认值，无法被停用。
            [% ELSIF value.is_static %]
               此数值不可删除，也不能被停用。
            [% END %]
@@ -93,7 +93,7 @@
   <input type="hidden" name="action" value="update">
   <input type="hidden" name="field" value="[% field.name FILTER html %]">
   <input type="hidden" name="token" value="[% token FILTER html %]">
-  <input type="submit" id="update" value="储存设定">
+  <input type="submit" id="update" value="保存设置">
 </form>
 
 [% PROCESS admin/fieldvalues/footer.html.tmpl

@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -13,7 +13,7 @@
 [% PROCESS "global/field-descs.none.tmpl" %]
 
 [% PROCESS global/header.html.tmpl
-  title = "自订栏位"
+  title = "自订字段"
   style_urls = ['skins/standard/admin.css']
   doc_section = "administering/custom-fields.html"
 %]
@@ -23,7 +23,7 @@
 [% columns = [
      {
        name => "name"
-       heading => "编辑自订栏位…"
+       heading => "编辑自订字段…"
        contentlink => "editfields.cgi?action=edit&amp;name=%%name%%"
      },
      {
@@ -40,11 +40,11 @@
      },
      {
        name => "enter_bug"
-       heading => "建立 $terms.Bug 时可以编辑"
+       heading => "创建 $terms.Bug 时可以编辑"
      },
      {
        name => "mailhead"
-       heading => "建立 $terms.Bug 时是否在 $terms.Bug 通知信中通知"
+       heading => "创建 $terms.Bug 时是否在 $terms.Bug 通知信中通知"
      },
      {
        name => "obsolete"
@@ -93,7 +93,7 @@
 %]
 
 <p>
-  <a href="editfields.cgi?action=add">新增一个自订栏位</a>
+  <a href="editfields.cgi?action=add">添加一个自订字段</a>
 </p>
 
 [% PROCESS global/footer.html.tmpl %]

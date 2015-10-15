@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -37,8 +37,8 @@
   一次变更多个 [% terms.bugs %] ：
   <ol>
     <li>在上方勾选你想变更的 [% terms.bugs %] 。</li>
-    <li>在下方的栏位做出适当的变更。如果你需要解释的话，请在意见栏留下解释。</li>
-    <li>点选<em>送出</em>钮。</li>
+    <li>在下方的字段做出适当的变更。如果你需要解释的话，请在意见栏留下解释。</li>
+    <li>点击<em>送出</em>钮。</li>
   </ol>
 </div>
 
@@ -176,7 +176,7 @@
            size => 40
       %]
       <input type="checkbox" id="set_default_assignee" name="set_default_assignee" value="1">
-      <label for="set_default_assignee">将产品负责人设回预设值</label>
+      <label for="set_default_assignee">将产品负责人设回默认值</label>
     </td>
   </tr>
 
@@ -191,7 +191,7 @@
              size => 40
         %]
         <input type="checkbox" id="set_default_qa_contact" name="set_default_qa_contact" value="1">
-        <label for="set_default_qa_contact">将 QA 连络人设回预设值</label>
+        <label for="set_default_qa_contact">将 QA 连络人设回默认值</label>
       </td>
     </tr>
   [% END %]
@@ -231,7 +231,7 @@
         <select name="keywordaction">
           <option value="add">加入这些关键字</option>
           <option value="remove">删除这些关键字</option>
-          <option value="set">将关键字设定为此清单</option>
+          <option value="set">将关键字设置为此清单</option>
         </select>
       </td>
 
@@ -301,7 +301,7 @@
          id="newcommentprivacy"
          onClick="updateCommentTagControl(this, 'comment')">
    <label for="newcommentprivacy">
-     将意见设定为不公开（仅
+     将意见设置为不公开（仅
      <strong>[% Param('insidergroup') FILTER html %]</strong>
      群组成员可见）
    </label>
@@ -344,7 +344,7 @@
   <table id="groups_edit_multiple">
     <tr>
       <th class="narrow_column"将 [% terms.bugs %]自此群组删除</th>
-      <th class="narrow_column"新增 [% terms.bugs %] 到此群组</th>
+      <th class="narrow_column"添加 [% terms.bugs %] 到此群组</th>
       <th>群组名称</th>
     </tr>
 
@@ -380,7 +380,7 @@
 
   [% IF foundinactive %]
     <p class="bz_info">（注意：不允许将 [% terms.Bugs %]
-    新增到[% FILTER inactive %]已不活动的群组[% END %]中，仅能删除。）</p>
+    添加到[% FILTER inactive %]已不活动的群组[% END %]中，仅能删除。）</p>
   [% END %]
 
 [% END %]

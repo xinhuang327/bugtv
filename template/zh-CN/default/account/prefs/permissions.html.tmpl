@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -45,16 +45,16 @@
         [% END %]
 
       [% ELSE %]
-        <p>你的帐号没有被设定任何权限。</p>
+        <p>你的帐号没有被设置任何权限。</p>
       [% END %]
 
       [% IF user.in_group('editusers') %]
         <p>
-          你拥有 editusers 的权限。你可以开启或关闭所有使用者的所有权限。
+          你拥有 editusers 的权限。你可以开启或关闭所有用户的所有权限。
         </p>
       [% ELSIF set_bits.size %]
         <p>
-          你可以开启或关闭<a href="editusers.cgi">其他使用者</a>的下列权限：
+          你可以开启或关闭<a href="editusers.cgi">其他用户</a>的下列权限：
         </p>
         
         <table>
@@ -69,7 +69,7 @@
 
       [% IF user.in_group('bz_sudoers') %]
         <p>
-          你是 <b>bz_sudoers</b> 群组的成员，因此你可以<a href="relogin.cgi?action=prepare-sudo">以其他使用者身份进行操作</a>。
+          你是 <b>bz_sudoers</b> 群组的成员，因此你可以<a href="relogin.cgi?action=prepare-sudo">以其他用户身份进行操作</a>。
         </p>
       [% END %]
     </div>

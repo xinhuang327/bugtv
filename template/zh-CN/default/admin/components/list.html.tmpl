@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -39,7 +39,7 @@
      },
      {
        name => "initialowner"
-       heading => "预设负责人"
+       heading => "缺省负责人"
      },
    ]
 %]
@@ -48,14 +48,14 @@
 
   [% columns.push({
        name => 'initialqacontact'
-       heading => '预设 QA 连络人'
+       heading => '缺省 QA 连络人'
      }) %]
 
 [% END %]
 
 [% columns.push({
      name => "initial_cc_names"
-     heading => "预设寄件副本清单"
+     heading => "缺省寄件副本清单"
    },
    {
      name => "isactive"
@@ -118,7 +118,7 @@
 %]
 
 <p>在产品 '[% product.name FILTER html %]'
-  <a href="editcomponents.cgi?action=add&amp;product=[% product.name FILTER uri %]">新增</a>子产品
+  <a href="editcomponents.cgi?action=add&amp;product=[% product.name FILTER uri %]">添加</a>子产品
   '[% product.name FILTER html %]'</p>
 
 [% IF ! showbugcounts %]

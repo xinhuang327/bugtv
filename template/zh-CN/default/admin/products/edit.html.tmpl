@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -25,7 +25,7 @@
 
 [% group_control = {${constants.CONTROLMAPNA}        => '不适用',
                     ${constants.CONTROLMAPSHOWN}     => '显示',
-                    ${constants.CONTROLMAPDEFAULT}   => '预设',
+                    ${constants.CONTROLMAPDEFAULT}   => '缺省',
                     ${constants.CONTROLMAPMANDATORY} => '强制'}
 %]
 
@@ -129,7 +129,7 @@
         value="[% product.name FILTER html %]">
   <input type="hidden" name="action" value="update">
   <input type="hidden" name="token" value="[% token FILTER html %]">
-  <input type="submit" id="update-product" value="储存变更">
+  <input type="submit" id="update-product" value="保存变更">
 </form>
 
 [% PROCESS "admin/products/footer.html.tmpl"

@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -14,7 +14,7 @@
 
 [% FOREACH group = mandatory_groups %]
   <p>
-    由於群组 '[% group.name FILTER html %]' 设定为强制 (MANDATORY)，因此将新增受该群组影响的
+    由于群组 '[% group.name FILTER html %]' 设置为强制 (MANDATORY)，因此将添加受该群组影响的
     [% group.count %] 个 [%+ terms.bugs %] 。
   </p>
 [% END %]
@@ -22,7 +22,7 @@
 [% FOREACH group = na_groups %]
   <p>
     群组 '[% group.name FILTER html %]' 影响了 [% group.count %] 个 [% terms.bugs %] ，这些
-    [% terms.bugs %] 已不再适用於此群组，因此将会被移除。
+    [% terms.bugs %] 已不再适用于此群组，因此将会被移除。
   </p>
 [% END %]
 
@@ -30,7 +30,7 @@
   [% PROCESS "global/hidden-fields.html.tmpl" exclude="^Bugzilla_(login|password)$" %]
   <p>
     <br>
-    点选「继续」键确认上方的所有变更。如果你不想做出上列变更，请点选「上一页」按键回到上一页。
+    点击「继续」键确认上方的所有变更。如果你不想做出上列变更，请点击「上一页」按键回到上一页。
   </p>
   <input type="hidden" name="confirmed" value="confirmed">
   <input type="submit" id="update" value="继续">

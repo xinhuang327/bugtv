@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -13,7 +13,7 @@
 
 From: [% Param('mailfrom') %]
 To: [% to_user.email %]
-Subject: [[% terms.Bug %] [%+ bug.id %]] [% '新增：' IF show_new %][%+ bug.short_desc %]
+Subject: [[% terms.Bug %] [%+ bug.id %]] [% '添加：' IF show_new %][%+ bug.short_desc %]
 Date: [% date %]
 X-Bugzilla-Reason: [% reasonsheader %]
 X-Bugzilla-Type: [% bugmailtype %]

@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -114,7 +114,7 @@ function toggle_display(link) {
                 [% ELSE %]
                   [% flag.setter.nick FILTER html %]:
                 [% END %]
-                [%+ flag.type.name FILTER html FILTER no_break %][% flag.status %]
+                [%+ flag.type.name FILTER html %][% flag.status %]
                 [%+ IF flag.status == "?" && flag.requestee %]
                   [% IF user.id %]
                     (<span title="[% flag.requestee.identity FILTER html %]">[% flag.requestee.nick FILTER html %]</span>)
@@ -130,7 +130,7 @@ function toggle_display(link) {
         [% END %]
 
         <td>
-          <a href="attachment.cgi?id=[% attachment.id %]&amp;action=edit">详细资料</a>
+          <a href="attachment.cgi?id=[% attachment.id %]&amp;action=edit">详细数据</a>
           [% IF attachment.ispatch && feature_enabled('patch_viewer') %]
             | <a href="attachment.cgi?id=[% attachment.id %]&amp;action=diff">比较差异 (Diff)</a>
           [% END %]
@@ -155,7 +155,7 @@ function toggle_display(link) {
         </span>
       [% END %]
       [% IF Param("maxattachmentsize") || Param("maxlocalattachment") %]
-        <a href="attachment.cgi?bugid=[% bugid %]&amp;action=enter">新增附件</a>
+        <a href="attachment.cgi?bugid=[% bugid %]&amp;action=enter">添加附件</a>
         （建议的 patch, testcase 等等）
       [% END %]
     </td>

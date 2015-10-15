@@ -1,4 +1,4 @@
-﻿[%# This Source Code Form is subject to the terms of the Mozilla Public
+[%# This Source Code Form is subject to the terms of the Mozilla Public
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/.
   #
@@ -45,10 +45,10 @@
 
   [% FOREACH p = c.products %]
     <tr>
-      <th class="right">
+      <th class="right nowrap">
         <a href="[% target %]?product=[% p.name FILTER uri -%]
               [%- IF previous_params %]&amp;[% previous_params FILTER none %][% END -%]">
-        [% p.name FILTER html FILTER no_break %]</a>:&nbsp;
+        [% p.name FILTER html %]</a>:
       </th>
 
       <td>[% p.description FILTER html_light %]</td>
